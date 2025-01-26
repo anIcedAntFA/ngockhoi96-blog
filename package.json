@@ -2,24 +2,109 @@
   "name": "ngockhoi96-blog",
   "version": "0.1.0",
   "private": true,
+  "keywords": [
+    "ngockhoi96",
+    "blog.ngockhoi96",
+    "nextjs",
+    "reactjs",
+    "typescript",
+    "mdx"
+  ],
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "prepare": "husky",
+    "prune": "rm -rf node_modules yarn.lock package-lock.json pnpm-lock.yaml bun.lockb dist coverage build dev-dist",
+    "update": "ncu --interactive --format group --install never",
+    "upgrade": "concurrently \"bun run prune\" \"bun run update\"",
+    "type-check": "tsc",
+    "lint:eslint": "next lint --fix",
+    "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
+    "lint:all:": "concurrently \"bun run lint:eslint\" \"bun run lint:oxlint\"",
+    "style": "stylelint \"src/**/*.{scss,css}\"",
+    "style:fix": "bun run style --fix",
+    "prettier": "prettier src --check",
+    "prettier:fix": "bun run prettier --write",
+    "format": "concurrently \"bun run prettier\" \"bun run lint\" \"bun run style\"",
+    "format:fix": "concurrently \"bun run prettier:fix\" \"bun run lint:oxlint\" \"bun run lint:eslint\" \"bun run style:fix\"",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --watch --coverage --ui",
+    "test:coverage": "vitest --watch --coverage",
+    "e2e": "bun playwright test",
+    "e2e:ui": "bun playwright test --ui",
+    "lint-staged": "lint-staged && tsc",
+    "release": "npx semantic-release",
+    "storybook": "storybook dev -p 6006 --quiet --no-open",
+    "build-storybook": "storybook build",
+    "commit": "git-cz"
   },
   "dependencies": {
+    "@chakra-ui/react": "^3.5.1",
+    "@emotion/react": "^11.14.0",
+    "next": "15.1.6",
+    "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.1.6"
+    "react-icons": "^5.4.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@chakra-ui/cli": "^3.5.1",
+    "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.50.0",
+    "@stylistic/eslint-plugin-js": "^2.13.0",
+    "@stylistic/stylelint-plugin": "^3.1.1",
+    "@testing-library/react": "^16.2.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^3.0.4",
+    "@vitest/eslint-plugin": "^1.1.25",
+    "@vitest/ui": "^3.0.4",
+    "concurrently": "^9.1.2",
+    "cz-git": "^1.11.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
-    "@eslint/eslintrc": "^3"
+    "eslint-plugin-check-file": "^2.8.0",
+    "eslint-plugin-drizzle": "^0.2.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-oxlint": "^0.15.8",
+    "eslint-plugin-playwright": "^2.2.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-write-good-comments": "^0.2.0",
+    "husky": "^9.1.7",
+    "jsdom-testing-mocks": "^1.13.1",
+    "lint-staged": "^15.4.2",
+    "npm-run-all2": "^7.0.2",
+    "oxlint": "^0.15.8",
+    "prettier": "^3.4.2",
+    "stylelint": "^16.13.2",
+    "stylelint-config-css-modules": "^4.4.0",
+    "stylelint-config-standard": "^37.0.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-semantic-groups": "^1.2.1",
+    "typescript": "^5",
+    "typescript-eslint": "^8.21.0",
+    "vitest": "^3.0.4"
+  },
+  "engines": {
+    "node": ">=20.17.0",
+    "npm": "please-use-bun",
+    "yarn": "please-use-bun",
+    "pnpm": "please-use-bun"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix --cache",
+      "prettier --write --ignore-unknown --cache"
+    ],
+    "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue,astro,svelte}": "oxlint"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
   }
 }

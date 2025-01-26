@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  compiler: {
+    reactRemoveProperties: { properties: ['^data-custom$'] },
+  },
+  experimental: {
+    optimizePackageImports: ['@chakra-ui/react'],
+  },
 };
 
 export default nextConfig;
