@@ -28,7 +28,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     return (
       <ChakraTooltip.Root {...rest}>
         <ChakraTooltip.Trigger asChild>{children}</ChakraTooltip.Trigger>
-        <Portal disabled={!portalled} container={portalRef}>
+        <Portal container={portalRef} disabled={!portalled}>
           <ChakraTooltip.Positioner>
             <ChakraTooltip.Content ref={ref} {...contentProps}>
               {showArrow && (

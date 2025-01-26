@@ -14,7 +14,7 @@ export const PopoverContent = React.forwardRef<
 >(function PopoverContent(props, ref) {
   const { portalled = true, portalRef, ...rest } = props;
   return (
-    <Portal disabled={!portalled} container={portalRef}>
+    <Portal container={portalRef} disabled={!portalled}>
       <ChakraPopover.Positioner>
         <ChakraPopover.Content ref={ref} {...rest} />
       </ChakraPopover.Positioner>

@@ -1,4 +1,4 @@
-import Dummy from '@/components/dummy';
+import { ColorModeButton } from '@/shared/ui/color-mode';
 
 import styles from './page.module.css';
 
@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Dummy />
         {title}
+        <ColorModeButton />
       </main>
     </div>
   );

@@ -1,7 +1,5 @@
 {
   "recommendations": [
-    "vitest.explorer",
-    "ms-playwright.playwright",
     "dbaeumer.vscode-eslint",
     "aaron-bond.better-comments",
     "editorconfig.editorconfig",

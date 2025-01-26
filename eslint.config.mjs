@@ -3,7 +3,9 @@ import { FlatCompat } from '@eslint/eslintrc';
 import pluginJs from '@eslint/js';
 import stylisticJs from '@stylistic/eslint-plugin-js';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import parser from '@typescript-eslint/parser';
 import pluginVitest from '@vitest/eslint-plugin';
+import chakraUiPlugin from 'eslint-plugin-chakra-ui';
 import checkFile from 'eslint-plugin-check-file';
 import drizzle from 'eslint-plugin-drizzle';
 import eslintImport from 'eslint-plugin-import';
@@ -29,6 +31,7 @@ const customConfig = {
     ecmaVersion: 2022,
     sourceType: 'module',
     parserOptions: {
+      parser,
       ecmaFeatures: {
         jsx: true,
       },
@@ -49,6 +52,7 @@ const customConfig = {
     prettier: prettier,
     drizzle: drizzle,
     'write-good-comments': writeGoodComments,
+    'chakra-ui': chakraUiPlugin,
   },
   rules: {
     'prettier/prettier': [
@@ -155,6 +159,7 @@ const customConfig = {
         format: ['camelCase', 'PascalCase'],
       },
     ],
+    ...chakraUiPlugin.configs.recommended,
     '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
