@@ -5,7 +5,22 @@ import {
   defineKeyframes,
   defineTokens,
 } from '@chakra-ui/react';
+import type { Attribute } from 'next-themes';
 
+import type { ValueType } from '../lib/utility-types';
+
+//* Custom `next-themes` configs
+export const themes = {
+  LIGHT: 'light',
+  DARK: 'dark',
+  SYSTEM: 'system',
+} as const;
+export type Theme = ValueType<typeof themes>;
+
+export const THEME_STORAGE_KEY = 'theme-mode';
+export const THEME_ATTRIBUTES: Attribute[] = ['class', 'data-theme'];
+
+//* Custom `Chakra UI` configs
 const customKeyframes = defineKeyframes({
   shakeX: {
     '0%, 100%': { transform: 'translateX(-100%)' },
@@ -58,5 +73,5 @@ const customConfig = defineConfig({
 });
 
 const customSystem = createSystem(defaultConfig, customConfig);
-
+//* Must default exported for `ChakraProvider` to work
 export default customSystem;

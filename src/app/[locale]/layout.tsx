@@ -2,8 +2,7 @@ import { Box } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages, setRequestLocale } from 'next-intl/server';
+import { getLocale, setRequestLocale } from 'next-intl/server';
 import type { PropsWithChildren } from 'react';
 
 import {
@@ -13,10 +12,10 @@ import {
   routing,
 } from '@/shared/lib/i18n';
 import type { Todo } from '@/shared/lib/utility-types';
-import { Provider } from '@/shared/ui/provider';
 import ScrollToTopButton from '@/shared/ui/scroll-to-top-button';
 
-// import './globals.css';
+import LocaleProvider from '../_provider/locale-provider';
+import ThemeProvider from '../_provider/theme-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -55,22 +54,18 @@ async function LocaleLayout({ children }: PropsWithChildren) {
 
   const { langDir, hrefLang } = availableLocalesMap[locale] || defaultLocale;
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  const messages = await getMessages();
-
   return (
     <html lang={hrefLang} dir={langDir} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <NextIntlClientProvider messages={messages}>
-          <Provider>
+        <LocaleProvider>
+          <ThemeProvider>
             <Box as='main'>{children}</Box>
             <ScrollToTopButton />
             <Box as='footer' h='800px' bg='blue.300'>
               <p>Footer</p>
             </Box>
-          </Provider>
-        </NextIntlClientProvider>
+          </ThemeProvider>
+        </LocaleProvider>
       </body>
     </html>
   );
