@@ -41,7 +41,7 @@
     "commit": "git-cz",
     "snippet": "bunx @chakra-ui/cli snippet add",
     "type-gen": "bunx @chakra-ui/cli typegen",
-    "type-gen:theme": "bun run type-gen src/shared/ui/theme.ts"
+    "type-gen:theme": "bun run type-gen src/shared/config/theme.config.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.5.1",
