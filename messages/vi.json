@@ -1,0 +1,196 @@
+{
+  "components": {
+    "common": {
+      "themeSwitcher": {
+        "ariaLabel": "Chế độ sáng/tối",
+        "tooltipLabel": {
+          "light": "Chuyển sang chế độ sáng",
+          "dark": "Chuyển sang chế độ tối"
+        }
+      },
+      "languageSelector": {
+        "ariaLabel": "Lựa chọn ngôn ngữ",
+        "tooltipLabel": "Lựa chọn ngôn ngữ"
+      },
+      "subscribeButton": {
+        "tooltipLabel": "Đăng ký nhận thông báo mới nhất",
+        "ariaLabel": "Đăng ký nhận thông báo mới nhất",
+        "label": "Đăng ký"
+      },
+      "githubStarButton": {
+        "tooltipLabel": "Đánh giá dự án trên GitHub",
+        "ariaLabel": "Sao trên GitHub",
+        "label": "Sao"
+      },
+      "scrollToTopButton": {
+        "tooltipLabel": "Cuộn lên đầu trang",
+        "ariaLabel": "Cuộn lên đầu trang"
+      },
+      "scrollProgressBar": {
+        "ariaLabel": "Thanh tiến trình cuộn trang"
+      },
+      "customImage": {
+        "ariaLabel": "Phóng to hình ảnh này",
+        "tooltipLabel": "Phóng to hình ảnh này"
+      },
+      "imageLightbox": {
+        "previewImage": {
+          "title": "Thu nhỏ hình ảnh này"
+        },
+        "downloadButton": {
+          "label": "Tải hình ảnh",
+          "title": "Tải"
+        },
+        "closeButton": {
+          "label": "Đóng hộp thoại hình ảnh",
+          "title": "Đóng"
+        },
+        "previousButton": {
+          "ariaLabel": "Hình ảnh trước",
+          "title": "Trước"
+        },
+        "nextButton": {
+          "ariaLabel": "Hình ảnh tiếp theo",
+          "title": "Tiếp"
+        }
+      },
+      "codeBlock": {
+        "copyCodeButton": {
+          "ariaLabel": "Sao chép mã",
+          "label": "Sao chép",
+          "copiedLabel": "Đã sao chép!"
+        }
+      },
+      "pagination": {
+        "ariaLabel": "phân trang",
+        "previousButton": {
+          "ariaLabel": "Trang trước",
+          "label": "Trước"
+        },
+        "nextButton": {
+          "ariaLabel": "Trang tiếp theo",
+          "label": "Tiếp"
+        },
+        "paginationItem": {
+          "ariaLabel": {
+            "page": "trang",
+            "goToPage": "đi đến trang"
+          }
+        }
+      }
+    },
+    "search": {
+      "searchButton": {
+        "placeholder": "Bắt đầu nhập...",
+        "press": "Nhấn",
+        "and": "và",
+        "toSearch": "để tìm kiếm"
+      },
+      "searchBox": {
+        "placeholder": "Ban muốn tìm kiếm gì?",
+        "search": "Tìm kiếm",
+        "clearButtonLabel": "Xóa ô tìm kiếm",
+        "dialogCloseTriggerLabel": "Đóng hộp thoại tìm kiếm",
+        "press": "Nhấn",
+        "toSelect": "để chọn",
+        "toNavigate": "để điều hướng",
+        "toClose": "để đóng"
+      }
+    },
+    "markdown": {
+      "mdxHeading": {
+        "ariaLabel": "Liên kết cố định: ",
+        "visuallyHidden": "Đọc phần {id}"
+      },
+      "mdxCustomImage": {
+        "title": "Phóng to hình ảnh này"
+      },
+      "copyHeadingUrlButton": {
+        "tooltipLabel": "Sao chép URL",
+        "ariaLabel": "Sao chép URL",
+        "toastMessage": {
+          "success": "Đã sao chép URL vào bộ nhớ đệm",
+          "fail": "Không thể sao chép URL vào bộ nhớ đệm"
+        }
+      }
+    }
+  },
+  "layout": {
+    "header": {
+      "navigation": {
+        "home": "Trang chủ",
+        "about": "Về chúng tôi",
+        "articles": "Bài viết",
+        "resources": "Tài nguyên"
+      },
+      "actions": {
+        "languages": {
+          "english": "Tiếng Anh",
+          "en": "EN",
+          "vietnam": "Tiếng Việt",
+          "vi": "VI"
+        },
+        "lightMode": "Chế độ sáng",
+        "darkMode": "Chế độ tối",
+        "search": "Tìm kiếm",
+        "subscribe": "Đăng ký",
+        "login": "Đăng nhập",
+        "write": "Viết bài",
+        "writePosts": "Viết bài",
+        "notifications": "Thông báo",
+        "accountMenu": {
+          "member": "Thành viên",
+          "list": {
+            "profile": "Hồ sơ",
+            "library": "Thư viện",
+            "stats": "Thống kê",
+            "settings": "Cài đặt",
+            "helps": "Trợ giúp",
+            "signOut": "Đăng xuất"
+          }
+        }
+      }
+    },
+    "footer": {
+      "githubInfo": {
+        "infoText": "Gặp vấn đề với trang này?",
+        "linkText": "Sửa nó trên GitHub"
+      },
+      "emailInfo": {
+        "infoText": "Cần hỗ trợ, liên hệ qua email"
+      },
+      "copyright": "Bản quyền"
+    }
+  },
+  "home": {
+    "metadata": {
+      "title": "Trang chủ",
+      "subtitle": "Chào mừng đến với blog của tôi",
+      "description": "Một trang web cá nhân để chia sẻ kiến thức và kinh nghiệm của tôi với mọi người.",
+      "keywords": "ngockhoi96, blog, phát triển website, lập trình, cuộc sống, học tập, chia sẻ"
+    }
+  },
+  "articles": {
+    "metadata": {
+      "title": "Articles",
+      "subtitle": "A collection of articles",
+      "description": "A collection of articles that share my ideas, experiences about techs and lifestyles.",
+      "keywords": "ngockhoi96, blog, web development, programming, techs, lifestyles, learn, sharing"
+    },
+    "components": {
+      "articleViewLayouts": {
+        "list": {
+          "iconButtonLabel": "Nút chọn dạng danh sách",
+          "tooltipLabel": "Hiển thị dạng danh sách"
+        },
+        "grid": {
+          "iconButtonLabel": "Nút chọn dạng lưới",
+          "tooltipLabel": "Hiển thị dạng lưới"
+        }
+      },
+      "tableOfContents": {
+        "title": "Trong bài viết này"
+      }
+    }
+  }
+}

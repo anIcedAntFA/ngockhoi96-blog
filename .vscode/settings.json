@@ -1,7 +1,7 @@
 {
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "tsconfig.json": "tsconfig.*.json, env.d.ts, next-env.d.ts",
+    "tsconfig.json": "tsconfig.*.json, env.d.ts, *.d.ts",
     "next.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*, vitest.setup.*",
     "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig, commitlint*, .stylelintrc.*, .npmrc, .nvmrc"
   },

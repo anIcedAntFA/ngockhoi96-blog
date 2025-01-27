@@ -4,7 +4,7 @@
   "private": true,
   "keywords": [
     "ngockhoi96",
-    "blog.ngockhoi96",
+    "blog",
     "nextjs",
     "reactjs",
     "typescript",
@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf .next && next build",
     "start": "next start",
     "prepare": "husky",
     "prune": "rm -rf node_modules yarn.lock package-lock.json pnpm-lock.yaml bun.lockb dist coverage build dev-dist",
@@ -22,7 +22,7 @@
     "lint:eslint": "next lint --fix",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:all:": "concurrently \"bun run lint:eslint\" \"bun run lint:oxlint\"",
-    "style": "stylelint \"src/**/*.{scss,css}\"",
+    "style": "stylelint \"src/**/*.css\"",
     "style:fix": "bun run style --fix",
     "prettier": "prettier src --check",
     "prettier:fix": "bun run prettier --write",
@@ -49,6 +49,7 @@
     "framer-motion": "^12.0.5",
     "lucide-react": "^0.474.0",
     "next": "15.1.6",
+    "next-intl": "^3.26.3",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

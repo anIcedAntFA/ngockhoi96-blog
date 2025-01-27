@@ -27,8 +27,6 @@ function scrollToTop(isSmooth: boolean) {
   });
 }
 
-type A = Dict<string>;
-
 const DEFAULT_OFFSET_TOP = 400;
 
 function ScrollToTopButton({

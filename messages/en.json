@@ -1,0 +1,196 @@
+{
+  "components": {
+    "common": {
+      "themeSwitcher": {
+        "ariaLabel": "Toggle Dark Mode",
+        "tooltipLabel": {
+          "light": "Switch to light mode",
+          "dark": "Switch to dark mode"
+        }
+      },
+      "languageSelector": {
+        "ariaLabel": "Select language",
+        "tooltipLabel": "Select language"
+      },
+      "subscribeButton": {
+        "tooltipLabel": "Subscribe to get the latest updates",
+        "ariaLabel": "Subscribe to get the latest updates",
+        "label": "Subscribe"
+      },
+      "githubStarButton": {
+        "tooltipLabel": "Star this project on GitHub",
+        "ariaLabel": "Star on GitHub",
+        "label": "Star"
+      },
+      "scrollToTopButton": {
+        "tooltipLabel": "Scroll to top",
+        "ariaLabel": "Scroll back to top"
+      },
+      "scrollProgressBar": {
+        "ariaLabel": "Scroll progress indicator page"
+      },
+      "customImage": {
+        "ariaLabel": "Zoom in on this image",
+        "tooltipLabel": "Zoom in on this image"
+      },
+      "imageLightbox": {
+        "previewImage": {
+          "title": "Zoom out on this image"
+        },
+        "downloadButton": {
+          "label": "Download image",
+          "title": "Download"
+        },
+        "closeButton": {
+          "label": "Close lightbox",
+          "title": "Close"
+        },
+        "previousButton": {
+          "ariaLabel": "Previous image",
+          "title": "Previous"
+        },
+        "nextButton": {
+          "ariaLabel": "Next image",
+          "title": "Next"
+        }
+      },
+      "codeBlock": {
+        "copyCodeButton": {
+          "ariaLabel": "Copy code",
+          "label": "Copy",
+          "copiedLabel": "Copied!"
+        }
+      },
+      "pagination": {
+        "ariaLabel": "pagination",
+        "previousButton": {
+          "ariaLabel": "Go to previous page",
+          "label": "Previous"
+        },
+        "nextButton": {
+          "ariaLabel": "Go to next page",
+          "label": "Next"
+        },
+        "paginationItem": {
+          "ariaLabel": {
+            "page": "page",
+            "goToPage": "go to page"
+          }
+        }
+      }
+    },
+    "search": {
+      "searchButton": {
+        "placeholder": "Start typing...",
+        "press": "Press",
+        "and": "and",
+        "toSearch": "to search"
+      },
+      "searchBox": {
+        "placeholder": "What are you looking for?",
+        "search": "Search",
+        "clearButtonLabel": "Clear search input",
+        "dialogCloseTriggerLabel": "Close search box dialog",
+        "press": "Press",
+        "toSelect": "to select",
+        "toNavigate": "to navigate",
+        "toClose": "to close"
+      }
+    },
+    "markdown": {
+      "mdxHeading": {
+        "ariaLabel": "Permalink: ",
+        "visuallyHidden": "Read the {id} section"
+      },
+      "mdxCustomImage": {
+        "title": "Zoom in on this image"
+      },
+      "copyHeadingUrlButton": {
+        "tooltipLabel": "Copy URL",
+        "ariaLabel": "Copy URL",
+        "toastMessage": {
+          "success": "Copied URL to clipboard",
+          "fail": "Couldn't copy URL to clipboard"
+        }
+      }
+    }
+  },
+  "layout": {
+    "header": {
+      "navigation": {
+        "home": "Home",
+        "about": "About",
+        "articles": "Articles",
+        "resources": "Resources"
+      },
+      "actions": {
+        "languages": {
+          "english": "English",
+          "en": "EN",
+          "vietnam": "Vietnam",
+          "vi": "VI"
+        },
+        "lightMode": "Light Mode",
+        "darkMode": "Dark Mode",
+        "search": "Search",
+        "subscribe": "Subscribe",
+        "login": "Login",
+        "write": "Write",
+        "writePosts": "Write Posts",
+        "notifications": "Notifications",
+        "accountMenu": {
+          "member": "Member",
+          "list": {
+            "profile": "Profile",
+            "library": "Library",
+            "stats": "Stats",
+            "settings": "Settings",
+            "helps": "Helps",
+            "signOut": "Sign Out"
+          }
+        }
+      }
+    },
+    "footer": {
+      "githubInfo": {
+        "infoText": "Find an issue with this page?",
+        "linkText": "Fix it on GitHub"
+      },
+      "emailInfo": {
+        "infoText": "Need help? Email"
+      },
+      "copyright": "Copyright"
+    }
+  },
+  "home": {
+    "metadata": {
+      "title": "Home",
+      "subtitle": "Welcome to my blog",
+      "description": "A personal blog that share my ideas, experiences about techs and lifestyles.",
+      "keywords": "ngockhoi96, blog, web development, programming, techs, lifestyles, learn, sharing"
+    }
+  },
+  "articles": {
+    "metadata": {
+      "title": "Articles",
+      "subtitle": "A collection of articles",
+      "description": "A collection of articles that share my ideas, experiences about techs and lifestyles.",
+      "keywords": "ngockhoi96, blog, web development, programming, techs, lifestyles, learn, sharing"
+    },
+    "components": {
+      "articleViewLayouts": {
+        "list": {
+          "iconButtonLabel": "List layout button",
+          "tooltipLabel": "List layout"
+        },
+        "grid": {
+          "iconButtonLabel": "Grid layout button",
+          "tooltipLabel": "Grid layout"
+        }
+      },
+      "tableOfContents": {
+        "title": "In this article"
+      }
+    }
+  }
+}

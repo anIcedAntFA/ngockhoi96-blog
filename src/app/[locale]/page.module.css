@@ -1,0 +1,171 @@
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+
+  display: grid;
+  grid-template-rows: 20px 1fr 20px;
+  gap: 64px;
+  justify-items: center;
+  align-items: center;
+
+  min-height: 100svh;
+  padding: 80px;
+
+  font-family: var(--font-geist-sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+    --button-primary-hover: #ccc;
+    --button-secondary-hover: #1a1a1a;
+  }
+}
+
+.main {
+  grid-row-start: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.main ol {
+  margin: 0;
+  padding-left: 0;
+
+  font-size: 14px;
+  font-family: var(--font-geist-mono);
+  line-height: 24px;
+  letter-spacing: -0.01em;
+
+  list-style-position: inside;
+}
+
+.main li:not(:last-of-type) {
+  margin-bottom: 8px;
+}
+
+.main code {
+  padding: 2px 4px;
+
+  font-weight: 600;
+  font-family: inherit;
+
+  border-radius: 4px;
+
+  background: var(--gray-alpha-100);
+}
+
+.ctas {
+  display: flex;
+  gap: 16px;
+}
+
+.ctas a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 48px;
+  padding: 0 20px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+
+  border: none;
+  border: 1px solid transparent;
+  border-radius: 128px;
+
+  cursor: pointer;
+
+  appearance: none;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+a.primary {
+  gap: 8px;
+
+  color: var(--background);
+
+  background: var(--foreground);
+}
+
+a.secondary {
+  min-width: 180px;
+
+  border-color: var(--gray-alpha-200);
+}
+
+.footer {
+  grid-row-start: 3;
+
+  display: flex;
+  gap: 24px;
+}
+
+.footer a {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer img {
+  flex-shrink: 0;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  a.primary:hover {
+    border-color: transparent;
+
+    background: var(--button-primary-hover);
+  }
+
+  a.secondary:hover {
+    border-color: transparent;
+
+    background: var(--button-secondary-hover);
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: invert();
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

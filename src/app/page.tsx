@@ -1,16 +1,9 @@
-import { ColorModeButton } from '@/shared/ui/color-mode';
+import { redirect } from '@/shared/lib/i18n';
 
-import styles from './page.module.css';
-
-export default function Home() {
-  const title = 'Welcome to your Next.js app';
-
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        {title}
-        <ColorModeButton />
-      </main>
-    </div>
-  );
+// This page renders when the app built statically (output: 'export')
+export default function RootPage() {
+  redirect({
+    href: '/en',
+    locale: 'en',
+  });
 }

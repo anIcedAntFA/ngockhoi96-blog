@@ -1,0 +1,22 @@
+[
+  {
+    "code": "en",
+    "localName": "English",
+    "name": "English",
+    "langDir": "ltr",
+    "dateFormat": "MM.DD.YYYY",
+    "hrefLang": "en-US",
+    "enabled": true,
+    "default": true
+  },
+  {
+    "code": "vi",
+    "localName": "Tiếng Việt",
+    "name": "Vietnamese",
+    "langDir": "ltr",
+    "dateFormat": "DD/MM/YYYY",
+    "hrefLang": "vi-VN",
+    "enabled": true,
+    "default": false
+  }
+]

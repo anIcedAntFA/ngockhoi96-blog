@@ -160,6 +160,24 @@ const customConfig = {
       },
     ],
     ...chakraUiPlugin.configs.recommended,
+    // Consistently import navigation APIs from `@/i18n/routing`
+    'no-restricted-imports': [
+      'error',
+      {
+        name: 'next/link',
+        message: 'Please import from `@/i18n/routing` instead.',
+      },
+      {
+        name: 'next/navigation',
+        importNames: [
+          'redirect',
+          'permanentRedirect',
+          'useRouter',
+          'usePathname',
+        ],
+        message: 'Please import from `@/i18n/routing` instead.',
+      },
+    ],
     '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
