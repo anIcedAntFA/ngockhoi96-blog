@@ -3,6 +3,7 @@ import {
   defaultConfig,
   defineConfig,
   defineKeyframes,
+  defineSemanticTokens,
   defineTokens,
 } from '@chakra-ui/react';
 import type { Attribute } from 'next-themes';
@@ -51,9 +52,42 @@ const customKeyframes = defineKeyframes({
 });
 
 const customTokens = defineTokens({
+  fonts: {
+    body: {
+      value: 'Open Sans, sans-serif',
+    },
+    heading: {
+      value: 'Lora, serif',
+    },
+    mono: {
+      value: 'JetBrains Mono, monospace',
+    },
+  },
   colors: {
-    ngockhoi96: {
-      value: 'orange',
+    snow: {
+      value: '#fffafa',
+    },
+    ghostWhite: {
+      value: '#f8f8ff',
+    },
+  },
+});
+
+const customSemanticTokens = defineSemanticTokens({
+  colors: {
+    fg: {
+      value: {
+        base: '{colors.gray.800}',
+        _dark: '{colors.snow}',
+      },
+    },
+    bg: {
+      default: {
+        value: {
+          base: '{colors.ghostWhite}',
+          _dark: '{colors.gray.800}',
+        },
+      },
     },
   },
 });
@@ -61,12 +95,21 @@ const customTokens = defineTokens({
 const customConfig = defineConfig({
   cssVarsPrefix: 'nk96',
   globalCss: {
-    'html, body': {
+    '*': {
       margin: 0,
       padding: 0,
+      boxSizing: 'border-box',
+    },
+    'html, body': {
+      fontWeight: 'normal',
+      fontSize: 'md',
+      fontFamily: 'body',
+      bg: 'bg.default',
+      color: 'fg',
     },
   },
   theme: {
+    semanticTokens: customSemanticTokens,
     tokens: customTokens,
     keyframes: customKeyframes,
   },
