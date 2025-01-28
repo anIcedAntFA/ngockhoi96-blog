@@ -49,6 +49,23 @@ const customKeyframes = defineKeyframes({
       transform: 'translateY(-50%)',
     },
   },
+  githubStarIcon: {
+    '0%': {
+      transform: 'scale(1)',
+    },
+    '25%': {
+      transform: 'scale(0.8)',
+    },
+    '50%': {
+      transform: 'scale(1)',
+    },
+    '75%': {
+      transform: 'scale(1.6)',
+    },
+    '100%': {
+      transform: 'scale(1.2)',
+    },
+  },
 });
 
 const customTokens = defineTokens({
@@ -75,18 +92,34 @@ const customTokens = defineTokens({
 
 const customSemanticTokens = defineSemanticTokens({
   colors: {
+    primary: {
+      value: {
+        base: '{colors.green.600}',
+        _dark: '{colors.green.300}',
+      },
+    },
     fg: {
       value: {
         base: '{colors.gray.800}',
         _dark: '{colors.snow}',
       },
     },
+    fgSecondary: {
+      value: {
+        base: '{colors.gray.600}',
+        _dark: '{colors.gray.400}',
+      },
+    },
+    fgTertiary: {
+      value: {
+        base: '{colors.snow}',
+        _dark: '{colors.gray.800}',
+      },
+    },
     bg: {
-      default: {
-        value: {
-          base: '{colors.ghostWhite}',
-          _dark: '{colors.gray.800}',
-        },
+      value: {
+        base: '{colors.ghostWhite}',
+        _dark: '{colors.gray.800}',
       },
     },
   },
@@ -101,16 +134,16 @@ const customConfig = defineConfig({
       boxSizing: 'border-box',
     },
     'html, body': {
+      fontFamily: 'body',
       fontWeight: 'normal',
       fontSize: 'md',
-      fontFamily: 'body',
-      bg: 'bg.default',
+      bg: 'bg',
       color: 'fg',
     },
   },
   theme: {
-    semanticTokens: customSemanticTokens,
     tokens: customTokens,
+    semanticTokens: customSemanticTokens,
     keyframes: customKeyframes,
   },
 });

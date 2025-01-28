@@ -66,8 +66,6 @@ function ScrollToTopButton({
         content='Scroll to top'
         positioning={{ placement: 'left' }}
         showArrow
-        openDelay={400}
-        closeDelay={200}
       >
         <Button
           aria-label='Scroll to top'
