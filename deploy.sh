@@ -10,7 +10,7 @@ DOMAIN_NAME="blog.ngockhoi96.dev" # replace with your own
 EMAIL=ngockhoi96.dev@gmail.com" # replace with your own
 
 # Script Vars
-REPO_URL="https://github.com/leerob/next-self-host.git"
+REPO_URL="https://github.com/anIcedAntFA/ngockhoi96-blog.git"
 APP_DIR=~/myapp
 SWAP_SIZE="1G"  # Swap size of 1GB
 

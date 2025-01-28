@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "rm -rf .next && next build",
-    "start": "next start",
+    "build": "next build",
+    "start": "node .next/standalone/server.js",
     "prepare": "husky",
     "prune": "rm -rf node_modules yarn.lock package-lock.json pnpm-lock.yaml bun.lockb dist coverage build dev-dist",
     "update": "ncu --interactive --format group --install never",
