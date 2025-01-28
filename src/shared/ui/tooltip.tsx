@@ -26,14 +26,25 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     if (disabled) return children;
 
     return (
-      <ChakraTooltip.Root {...rest}>
+      <ChakraTooltip.Root openDelay={400} closeDelay={200} {...rest}>
         <ChakraTooltip.Trigger asChild>{children}</ChakraTooltip.Trigger>
         <Portal container={portalRef} disabled={!portalled}>
           <ChakraTooltip.Positioner>
-            <ChakraTooltip.Content ref={ref} {...contentProps}>
+            <ChakraTooltip.Content
+              ref={ref}
+              color='fgTertiary'
+              bg='primary'
+              borderColor='primary'
+              {...contentProps}
+            >
               {showArrow && (
-                <ChakraTooltip.Arrow>
-                  <ChakraTooltip.ArrowTip />
+                <ChakraTooltip.Arrow color='gray.800'>
+                  <ChakraTooltip.ArrowTip
+                    color='primary'
+                    css={{
+                      '--arrow-background': 'colors.primary',
+                    }}
+                  />
                 </ChakraTooltip.Arrow>
               )}
               {content}
