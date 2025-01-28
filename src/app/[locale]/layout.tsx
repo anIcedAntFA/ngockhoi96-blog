@@ -1,10 +1,10 @@
 import { Box } from '@chakra-ui/react';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { getLocale, setRequestLocale } from 'next-intl/server';
 import type { PropsWithChildren } from 'react';
 
+import { jetBrainMono, lora, openSans } from '@/shared/config/font.config';
 import {
   availableLocaleCodes,
   availableLocalesMap,
@@ -16,16 +16,6 @@ import ScrollToTopButton from '@/shared/ui/scroll-to-top-button';
 
 import LocaleProvider from '../_provider/locale-provider';
 import ThemeProvider from '../_provider/theme-provider';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -56,7 +46,9 @@ async function LocaleLayout({ children }: PropsWithChildren) {
 
   return (
     <html lang={hrefLang} dir={langDir} suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${openSans.variable} ${lora.variable} ${jetBrainMono.variable}`}
+      >
         <LocaleProvider>
           <ThemeProvider>
             <Box as='main'>{children}</Box>
