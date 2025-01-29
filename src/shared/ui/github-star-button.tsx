@@ -8,7 +8,6 @@ import {
   Separator,
 } from '@chakra-ui/react';
 import { StarIcon } from 'lucide-react';
-// eslint-disable-next-line no-restricted-imports
 import NextLink from 'next/link';
 import { useTranslations } from 'next-intl';
 
