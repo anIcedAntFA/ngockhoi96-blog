@@ -104,6 +104,12 @@ const customSemanticTokens = defineSemanticTokens({
         _dark: '{colors.snow}',
       },
     },
+    fgBase: {
+      value: {
+        base: '{colors.gray.500}',
+        _dark: '{colors.gray.200}',
+      },
+    },
     fgSecondary: {
       value: {
         base: '{colors.gray.600}',
@@ -137,6 +143,8 @@ const customConfig = defineConfig({
       fontFamily: 'body',
       fontWeight: 'normal',
       fontSize: 'md',
+      lineHeight: 'moderate',
+      letterSpacing: 'normal',
       bg: 'bg',
       color: 'fg',
     },

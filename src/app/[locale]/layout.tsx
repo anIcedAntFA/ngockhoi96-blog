@@ -12,6 +12,7 @@ import {
   routing,
 } from '@/shared/lib/i18n';
 import type { Todo } from '@/shared/lib/utility-types';
+import Footer from '@/shared/ui/footer';
 import GithubStarButton from '@/shared/ui/github-star-button';
 import ScrollToTopButton from '@/shared/ui/scroll-to-top-button';
 
@@ -106,9 +107,7 @@ async function LocaleLayout({ children }: PropsWithChildren) {
             <GithubStarButton count={starCount} />
             <Box as='main'>{children}</Box>
             <ScrollToTopButton />
-            <Box as='footer' h='800px' bg='blue.300'>
-              <p>Footer</p>
-            </Box>
+            <Footer />
           </ThemeProvider>
         </LocaleProvider>
       </body>
