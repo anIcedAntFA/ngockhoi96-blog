@@ -1,25 +1,18 @@
-import {
-  Link as ChakraLink,
-  Flex,
-  For,
-  Icon,
-  List,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import { Flex, For, List, Text, VStack } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import type { ReactElement } from 'react';
+
+import { PERSONAL_GITHUB_REPO_URL } from '../config/constant.config';
 
 import DiscordIcon from './icons/discord-icon';
 import FacebookIcon from './icons/facebook-icon';
 import GithubIcon from './icons/github-icon';
 import LinkedInIcon from './icons/linked-in-icon';
 import TelegramIcon from './icons/telegram-icon';
+import NavItem from './nav-item';
 import { Tooltip } from './tooltip';
 
 const PERSONAL_EMAIL = 'ngockhoi96.dev@gmail.com';
-const PERSONAL_GITHUB_REPO_URL =
-  'https://github.com/anIcedAntFA/blog.ngockhoi96.dev';
 
 const footerSocialIcons: Record<string, ReactElement> = {
   GITHUB: <GithubIcon />,
@@ -77,28 +70,23 @@ function Footer() {
     >
       <Flex align='center' gap={1}>
         <Text color='fgBase'>{t('githubInfo.infoText')}</Text>
-        <ChakraLink
-          color='blue.600'
-          _hover={{ textDecoration: 'none' }}
-          _dark={{ color: 'blue.400' }}
+        <NavItem
+          aria-label='Github repository'
           href={PERSONAL_GITHUB_REPO_URL}
-          rel='noopener noreferrer'
           target='_blank'
         >
           {t('githubInfo.linkText')}
-        </ChakraLink>
+        </NavItem>
       </Flex>
       <Flex align='center' gap={1}>
         <Text color='fgBase'>{t('emailInfo.infoText')}</Text>
-        <ChakraLink
-          color='blue.600'
-          _hover={{ textDecoration: 'none' }}
-          _dark={{ color: 'blue.400' }}
+        <NavItem
+          aria-label='Email address'
+          hoverType='bg'
           href={`mailto:${PERSONAL_EMAIL}`}
-          target='_blank'
         >
           {PERSONAL_EMAIL}
-        </ChakraLink>
+        </NavItem>
       </Flex>
       <List.Root
         flexDirection='row'
@@ -109,19 +97,16 @@ function Footer() {
       >
         <For each={socialLinks}>
           {({ id, icon, alt, link }) => (
-            <Tooltip content={alt} showArrow openDelay={200} closeDelay={100}>
-              <List.Item key={id} w={5} h={5}>
-                <ChakraLink
-                  color='fgBase'
+            <Tooltip content={alt} showArrow>
+              <List.Item key={id}>
+                <NavItem
+                  hoverType='icon'
                   aria-label={alt}
                   href={link}
-                  rel='noopener noreferrer'
                   target='_blank'
                 >
-                  <Icon w={5} h={5}>
-                    {footerSocialIcons[icon]}
-                  </Icon>
-                </ChakraLink>
+                  {footerSocialIcons[icon]}
+                </NavItem>
               </List.Item>
             </Tooltip>
           )}
