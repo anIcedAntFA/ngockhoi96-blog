@@ -99,9 +99,11 @@ const customSemanticTokens = defineSemanticTokens({
       },
     },
     fg: {
-      value: {
-        base: '{colors.gray.800}',
-        _dark: '{colors.snow}',
+      default: {
+        value: {
+          base: '{colors.gray.800}',
+          _dark: '{colors.snow}',
+        },
       },
     },
     fgBase: {
@@ -123,9 +125,11 @@ const customSemanticTokens = defineSemanticTokens({
       },
     },
     bg: {
-      value: {
-        base: '{colors.ghostWhite}',
-        _dark: '{colors.gray.800}',
+      default: {
+        value: {
+          base: '{colors.ghostWhite}',
+          _dark: '{colors.gray.800}',
+        },
       },
     },
   },
@@ -145,7 +149,7 @@ const customConfig = defineConfig({
       fontSize: 'md',
       lineHeight: 'moderate',
       letterSpacing: 'normal',
-      bg: 'bg',
+      bg: 'bg.default',
       color: 'fg',
     },
   },
