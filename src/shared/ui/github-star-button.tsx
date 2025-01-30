@@ -38,6 +38,7 @@ function GithubStarButton({
         p={2}
         border='2px solid'
         borderColor='primary'
+        shadow='md'
         _hover={{
           textDecoration: 'none',
           backgroundColor: 'primary/10',

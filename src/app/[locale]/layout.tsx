@@ -98,10 +98,13 @@ async function LocaleLayout({ children }: PropsWithChildren) {
   const starCount = await getStarCount('anIcedAntFA', 'blog.ngockhoi96.dev');
 
   return (
-    <html lang={hrefLang} dir={langDir} suppressHydrationWarning>
-      <body
-        className={`${openSans.variable} ${lora.variable} ${jetBrainMono.variable}`}
-      >
+    <html
+      lang={hrefLang}
+      dir={langDir}
+      className={`${openSans.variable} ${lora.variable} ${jetBrainMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
         <LocaleProvider>
           <ThemeProvider>
             <NavigationBar starCount={starCount} />
