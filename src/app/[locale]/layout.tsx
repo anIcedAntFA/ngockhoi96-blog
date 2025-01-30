@@ -13,7 +13,7 @@ import {
 } from '@/shared/lib/i18n';
 import type { Todo } from '@/shared/lib/utility-types';
 import Footer from '@/shared/ui/footer';
-import GithubStarButton from '@/shared/ui/github-star-button';
+import NavigationBar from '@/shared/ui/navigation-bar';
 import ScrollToTopButton from '@/shared/ui/scroll-to-top-button';
 
 import LocaleProvider from '../_provider/locale-provider';
@@ -98,13 +98,16 @@ async function LocaleLayout({ children }: PropsWithChildren) {
   const starCount = await getStarCount('anIcedAntFA', 'blog.ngockhoi96.dev');
 
   return (
-    <html lang={hrefLang} dir={langDir} suppressHydrationWarning>
-      <body
-        className={`${openSans.variable} ${lora.variable} ${jetBrainMono.variable}`}
-      >
+    <html
+      lang={hrefLang}
+      dir={langDir}
+      className={`${openSans.variable} ${lora.variable} ${jetBrainMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
         <LocaleProvider>
           <ThemeProvider>
-            <GithubStarButton count={starCount} />
+            <NavigationBar starCount={starCount} />
             <Box as='main'>{children}</Box>
             <ScrollToTopButton />
             <Footer />

@@ -38,6 +38,7 @@ function GithubStarButton({
         p={2}
         border='2px solid'
         borderColor='primary'
+        shadow='md'
         _hover={{
           textDecoration: 'none',
           backgroundColor: 'primary/10',
@@ -70,7 +71,8 @@ function GithubStarButton({
           <Box
             as='span'
             color='fgSecondary'
-            fontWeight='bold'
+            fontSize='sm'
+            fontWeight='semibold'
             transition='color 0.3s'
           >
             {t('label')}
@@ -85,7 +87,7 @@ function GithubStarButton({
         <Box
           as='span'
           color='fgSecondary'
-          fontWeight='bold'
+          fontWeight='semibold'
           transition='color 0.3s'
         >
           {count}

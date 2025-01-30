@@ -5,6 +5,7 @@ export {
   usePathname,
   useRouter,
 } from './i18n.routing';
+export type { Pathname } from './i18n.config';
 export { pathnames } from './i18n.config';
 export {
   availableLocaleCodes,

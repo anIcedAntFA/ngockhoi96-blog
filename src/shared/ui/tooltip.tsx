@@ -46,6 +46,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                 <ChakraTooltip.Arrow>
                   <ChakraTooltip.ArrowTip
                     color='#36d399'
+                    borderColor='#36d399'
                     css={{
                       '--arrow-background': '#36d399',
                     }}

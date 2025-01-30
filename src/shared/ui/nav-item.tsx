@@ -50,7 +50,7 @@ function NavItem({
             content: '""',
             position: 'absolute',
             inset: 0,
-            borderRadius: 'md',
+            borderRadius: 'sm',
             bg: 'transparent',
             transition: 'background 0.3s',
           },

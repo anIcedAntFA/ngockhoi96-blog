@@ -1,7 +1,9 @@
 import {
   createSystem,
   defaultConfig,
+  defineAnimationStyles,
   defineConfig,
+  defineGlobalStyles,
   defineKeyframes,
   defineSemanticTokens,
   defineTokens,
@@ -22,10 +24,91 @@ export const THEME_STORAGE_KEY = 'theme-mode';
 export const THEME_ATTRIBUTES: Attribute[] = ['class', 'data-theme'];
 
 //* Custom `Chakra UI` configs
+const globalCSS = defineGlobalStyles({
+  '*': {
+    margin: 0,
+    padding: 0,
+    boxSizing: 'border-box',
+  },
+  'html, body': {
+    fontFamily: 'body',
+    fontWeight: 'normal',
+    fontSize: 'md',
+    lineHeight: 'moderate',
+    letterSpacing: 'normal',
+    bg: 'bg.default',
+    color: 'fg.default',
+  },
+});
+
+const customTokens = defineTokens({
+  fonts: {
+    body: { value: 'var(--font-open-sans-serif)' },
+    heading: { value: 'var(--font-lora-serif)' },
+    mono: { value: 'var(--font-jet-brain-mono)' },
+  },
+  colors: {
+    snow: { value: '#fffafa' },
+    ghostWhite: { value: '#f8f8ff' },
+  },
+});
+
+const customSemanticTokens = defineSemanticTokens({
+  colors: {
+    primary: {
+      value: {
+        base: '{colors.green.600}',
+        _dark: '{colors.green.300}',
+      },
+    },
+    fg: {
+      default: {
+        value: {
+          base: '{colors.gray.800}',
+          _dark: '{colors.snow}',
+        },
+      },
+    },
+    fgBase: {
+      value: {
+        base: '{colors.gray.500}',
+        _dark: '{colors.gray.200}',
+      },
+    },
+    fgSecondary: {
+      value: {
+        base: '{colors.gray.600}',
+        _dark: '{colors.gray.400}',
+      },
+    },
+    fgTertiary: {
+      value: {
+        base: '{colors.snow}',
+        _dark: '{colors.gray.800}',
+      },
+    },
+    bg: {
+      default: {
+        value: {
+          base: '{colors.ghostWhite}',
+          _dark: '{colors.gray.800}',
+        },
+      },
+    },
+  },
+});
+
 const customKeyframes = defineKeyframes({
-  shakeX: {
-    '0%, 100%': { transform: 'translateX(-100%)' },
-    '50%': { transform: 'translateX(100%)' },
+  'shiny-glass': {
+    '0%': {
+      left: '-100%',
+    },
+    '25%': {
+      left: '120%',
+    },
+    '100%': {
+      left: '100%',
+    },
   },
   goToTopIcon: {
     '0%': {
@@ -68,91 +151,26 @@ const customKeyframes = defineKeyframes({
   },
 });
 
-const customTokens = defineTokens({
-  fonts: {
-    body: {
-      value: 'Open Sans, sans-serif',
-    },
-    heading: {
-      value: 'Lora, serif',
-    },
-    mono: {
-      value: 'JetBrains Mono, monospace',
-    },
-  },
-  colors: {
-    snow: {
-      value: '#fffafa',
-    },
-    ghostWhite: {
-      value: '#f8f8ff',
-    },
-  },
-});
-
-const customSemanticTokens = defineSemanticTokens({
-  colors: {
-    primary: {
-      value: {
-        base: '{colors.green.600}',
-        _dark: '{colors.green.300}',
-      },
-    },
-    fg: {
-      value: {
-        base: '{colors.gray.800}',
-        _dark: '{colors.snow}',
-      },
-    },
-    fgBase: {
-      value: {
-        base: '{colors.gray.500}',
-        _dark: '{colors.gray.200}',
-      },
-    },
-    fgSecondary: {
-      value: {
-        base: '{colors.gray.600}',
-        _dark: '{colors.gray.400}',
-      },
-    },
-    fgTertiary: {
-      value: {
-        base: '{colors.snow}',
-        _dark: '{colors.gray.800}',
-      },
-    },
-    bg: {
-      value: {
-        base: '{colors.ghostWhite}',
-        _dark: '{colors.gray.800}',
-      },
+const customAnimationStyles = defineAnimationStyles({
+  'shiny-glass': {
+    description: 'Shiny glass effect',
+    value: {
+      animationName: 'shiny-glass',
+      animationDuration: '4s',
+      animationTimingFunction: 'ease-in-out',
+      animationIterationCount: 'infinite',
     },
   },
 });
 
 const customConfig = defineConfig({
   cssVarsPrefix: 'nk96',
-  globalCss: {
-    '*': {
-      margin: 0,
-      padding: 0,
-      boxSizing: 'border-box',
-    },
-    'html, body': {
-      fontFamily: 'body',
-      fontWeight: 'normal',
-      fontSize: 'md',
-      lineHeight: 'moderate',
-      letterSpacing: 'normal',
-      bg: 'bg',
-      color: 'fg',
-    },
-  },
+  globalCss: globalCSS,
   theme: {
     tokens: customTokens,
     semanticTokens: customSemanticTokens,
     keyframes: customKeyframes,
+    animationStyles: customAnimationStyles,
   },
 });
 
