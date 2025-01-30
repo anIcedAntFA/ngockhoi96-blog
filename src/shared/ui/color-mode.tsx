@@ -7,7 +7,7 @@ import { ThemeProvider, useTheme } from 'next-themes';
 import type { ThemeProviderProps } from 'next-themes';
 import * as React from 'react';
 
-export interface ColorModeProviderProps extends ThemeProviderProps {}
+export type ColorModeProviderProps = ThemeProviderProps;
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
   return (
@@ -19,6 +19,7 @@ export type ColorMode = 'light' | 'dark';
 
 export interface UseColorModeReturn {
   colorMode: ColorMode;
+  // eslint-disable-next-line no-unused-vars
   setColorMode: (colorMode: ColorMode) => void;
   toggleColorMode: () => void;
 }
@@ -45,7 +46,7 @@ export function ColorModeIcon() {
   return colorMode === 'dark' ? <Moon /> : <Sun />;
 }
 
-interface ColorModeButtonProps extends Omit<IconButtonProps, 'aria-label'> {}
+type ColorModeButtonProps = Omit<IconButtonProps, 'aria-label'>;
 
 export const ColorModeButton = React.forwardRef<
   HTMLButtonElement,

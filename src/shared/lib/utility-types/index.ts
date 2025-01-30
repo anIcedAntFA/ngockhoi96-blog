@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Todo = any;
 
 // export type Dict<T = Todo> = Record<string, T>;

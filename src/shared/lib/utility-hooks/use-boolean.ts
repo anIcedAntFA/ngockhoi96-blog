@@ -25,9 +25,15 @@ function useBoolean(initialValue: InitialValue = false) {
 
   const callbacks = useMemo(
     () => ({
-      on: () => setValue(true),
-      off: () => setValue(false),
-      toggle: () => setValue((prev) => !prev),
+      on: () => {
+        setValue(true);
+      },
+      off: () => {
+        setValue(false);
+      },
+      toggle: () => {
+        setValue((prev) => !prev);
+      },
     }),
     [],
   );

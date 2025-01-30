@@ -6,6 +6,7 @@ import type { Todo } from '../utility-types';
 export type UseOutsideClickProps = {
   isEnabled?: boolean | (() => boolean);
   ref: RefObject<HTMLElement>;
+  // eslint-disable-next-line no-unused-vars
   handler?: (e: Event) => void;
 };
 
@@ -75,7 +76,7 @@ function isValidEvent(event: Event, ref: RefObject<HTMLElement>) {
     if (!doc.contains(target)) return false;
   }
 
-  return !ref.current?.contains(target);
+  return !ref.current.contains(target);
 }
 
 function getOwnerDocument(node?: Element | null): Document {

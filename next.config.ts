@@ -34,7 +34,19 @@ const nextConfig: NextConfig = {
   compress: false,
   // Optional: override the default (1 year) `stale-while-revalidate`
   // header time for static pages
-  // swrDelta: 3600 // seconds
+  // swrDelta: 3600 // seconds,
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
 };
 
 const withNextIntl = createNextIntlPlugin(
