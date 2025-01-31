@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Box,
   Link as ChakraLink,
@@ -10,9 +8,9 @@ import {
 import { StarIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { PERSONAL_GITHUB_REPO_URL } from '../config/constant.config';
+import { PERSONAL_GITHUB_REPO_URL } from '@/shared/config/constant.config';
 
-import { Tooltip } from './tooltip';
+import { Tooltip } from '../tooltip';
 
 interface GithubStarButtonProps {
   count: number;
@@ -98,5 +96,4 @@ function GithubStarButton({
 }
 
 GithubStarButton.displayName = 'GithubStarButton';
-
 export default GithubStarButton;

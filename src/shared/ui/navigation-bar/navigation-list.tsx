@@ -334,8 +334,20 @@ function NavigationList() {
   const t = useTranslations('layout.header.navigation');
 
   return (
-    <Box as='nav' pos='absolute' left='50%' transform='translateX(-50%)'>
-      <List.Root listStyle='none' flexDirection='row' align='center' gap={2}>
+    <Box
+      as='nav'
+      pos='absolute'
+      left='50%'
+      transform='translateX(-50%)'
+      aria-labelledby='main-menu-content'
+    >
+      <List.Root
+        id='main-menu-content'
+        listStyle='none'
+        flexDirection='row'
+        align='center'
+        gap={2}
+      >
         <For each={navigationList(t)}>
           {({ id, ...restData }) => (
             <List.Item key={id}>
@@ -349,5 +361,4 @@ function NavigationList() {
 }
 
 NavigationList.displayName = 'NavigationList';
-
 export default NavigationList;

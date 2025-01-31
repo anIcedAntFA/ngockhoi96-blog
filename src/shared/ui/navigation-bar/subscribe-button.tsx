@@ -1,8 +1,8 @@
-import { Button, Icon } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
 import { Mail } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-// import { Button } from '../button';
+import { Button } from '../button';
 
 function SubscribeButton() {
   const t = useTranslations('components.common.subscribeButton');
@@ -47,5 +47,4 @@ function SubscribeButton() {
 }
 
 SubscribeButton.displayName = 'SubscribeButton';
-
 export default SubscribeButton;
