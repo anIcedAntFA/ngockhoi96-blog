@@ -30,7 +30,6 @@ type NavigationListKey = MessageKeys<
 >;
 
 const navigationList = (
-  // eslint-disable-next-line no-unused-vars
   t: (key: NavigationListKey) => string,
 ): {
   id: number;

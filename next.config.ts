@@ -1,6 +1,9 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
+const buildENV = process.env.BUILD_ENV || 'production';
+console.log(`BUILD_ENV: ${buildENV}, NODE_ENV: ${process.env.NODE_ENV}`);
+
 const nextConfig: NextConfig = {
   // Recommended: this will reduce output
   // Docker image size by 80%+
@@ -36,16 +39,16 @@ const nextConfig: NextConfig = {
   // header time for static pages
   // swrDelta: 3600 // seconds,
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
+    // Warning: This allows production builds to complete even if
     // your project has ESLint errors.
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: buildENV === 'production' ? true : false,
   },
   typescript: {
     // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
+    // Dangerously allow production builds to complete
+    // even if your project has type errors.
     // !! WARN !!
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: buildENV === 'production' ? true : false,
   },
 };
 

@@ -19,7 +19,7 @@ export type ColorMode = 'light' | 'dark';
 
 export interface UseColorModeReturn {
   colorMode: ColorMode;
-  // eslint-disable-next-line no-unused-vars
+
   setColorMode: (colorMode: ColorMode) => void;
   toggleColorMode: () => void;
 }

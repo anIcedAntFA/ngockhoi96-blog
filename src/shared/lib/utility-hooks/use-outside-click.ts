@@ -6,7 +6,7 @@ import type { Todo } from '../utility-types';
 export type UseOutsideClickProps = {
   isEnabled?: boolean | (() => boolean);
   ref: RefObject<HTMLElement>;
-  // eslint-disable-next-line no-unused-vars
+
   handler?: (e: Event) => void;
 };
 
