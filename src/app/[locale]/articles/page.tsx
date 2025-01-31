@@ -41,6 +41,18 @@ async function ArticlePage() {
           </div>
         ))}
       </div>
+
+      {Array.from({ length: 50 }).map((_, index) => (
+        <div key={index}>
+          <h2>Article {index + 1}</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            malesuada, purus nec convallis tincidunt, libero mauris ultricies
+            nulla, in ultricies libero eros id nunc. Nullam nec velit nec
+            libero.
+          </p>
+        </div>
+      ))}
     </div>
   );
 }

@@ -23,6 +23,10 @@ export type Theme = ValueType<typeof themes>;
 export const THEME_STORAGE_KEY = 'theme-mode';
 export const THEME_ATTRIBUTES: Attribute[] = ['class', 'data-theme'];
 
+export const DESKTOP_HEADER_HEIGHT = 64;
+export const TABLET_HEADER_HEIGHT = 56;
+export const MOBILE_HEADER_HEIGHT = 48;
+
 //* Custom `Chakra UI` configs
 const globalCSS = defineGlobalStyles({
   '*': {
