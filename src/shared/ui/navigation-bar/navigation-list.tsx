@@ -95,9 +95,9 @@ function NavItem({ data }: NavItemProps) {
       <ChakraLink
         pos='relative'
         justifyContent='center'
-        gap={2}
+        gap={{ lg: 1, xl: 2 }}
         overflow='hidden'
-        px={3}
+        px={{ lg: 2, xl: 3 }}
         py={2}
         _hover={{
           textDecoration: 'none',
@@ -153,10 +153,15 @@ function NavItem({ data }: NavItemProps) {
         rounded='md'
       >
         <LocaleLink href={href}>
-          <Icon w={5} h={5} transition='color 0.3s'>
+          <Icon w={4} h={4} transition='color 0.3s' xl={{ w: 5, h: 5 }}>
             {icon}
           </Icon>
-          <Box as='span' fontWeight='medium' transition='color 0.3s'>
+          <Box
+            as='span'
+            fontSize={{ lg: 'sm', xl: 'md' }}
+            fontWeight='medium'
+            transition='color 0.3s'
+          >
             {title}
           </Box>
           <Show when={isActive}>
@@ -184,9 +189,9 @@ function NavItem({ data }: NavItemProps) {
           ref={btnRef}
           pos='relative'
           justifyContent='center'
-          gap={2}
+          gap={{ lg: 1, xl: 2 }}
           overflow='hidden'
-          px={3}
+          px={{ lg: 2, xl: 3 }}
           py={2}
           color='fg.default'
           fontSize='md'
@@ -257,10 +262,15 @@ function NavItem({ data }: NavItemProps) {
           onClick={onToggle}
           rounded='md'
         >
-          <Icon w={5} h={5} transition='color 0.3s'>
+          <Icon w={4} h={4} transition='color 0.3s' xl={{ w: 5, h: 5 }}>
             {icon}
           </Icon>
-          <Box as='span' fontWeight='medium' transition='color 0.3s'>
+          <Box
+            as='span'
+            fontSize={{ lg: 'sm', xl: 'md' }}
+            fontWeight='medium'
+            transition='color 0.3s'
+          >
             {title}
           </Box>
           <DropdownIcon active={open} />
@@ -294,6 +304,7 @@ function DropdownIcon({ active = false }: { active?: boolean }) {
       as='span'
       display='inline-block'
       w={4}
+      ml={{ lg: '6px', xl: 0 }}
       _before={{
         transform: 'rotate(45deg) scaleX(0.7) translate(-3px, 3px)',
       }}
@@ -350,7 +361,7 @@ function NavigationList() {
       >
         <For each={navigationList(t)}>
           {({ id, ...restData }) => (
-            <List.Item key={id}>
+            <List.Item key={id} display='flex'>
               <NavItem data={restData} />
             </List.Item>
           )}

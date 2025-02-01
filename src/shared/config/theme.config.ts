@@ -43,6 +43,11 @@ const globalCSS = defineGlobalStyles({
     bg: 'bg.default',
     color: 'fg.default',
   },
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
 });
 
 const customTokens = defineTokens({

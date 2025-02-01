@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, HStack, Separator } from '@chakra-ui/react';
+import { Box, HStack, Separator, Show, useBreakpoint } from '@chakra-ui/react';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -24,7 +24,6 @@ function NavigationBar({ starCount }: NavigationBarProps) {
   const headerRef = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll();
-
   const hidden = useBoolean(false);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -37,6 +36,8 @@ function NavigationBar({ starCount }: NavigationBarProps) {
         latest > BLUR_THRESHOLD ? 'true' : 'false';
     }
   });
+
+  const breakpoint = useBreakpoint({ breakpoints: ['md', 'lg'] });
 
   return (
     <MotionHeader
@@ -65,11 +66,13 @@ function NavigationBar({ starCount }: NavigationBarProps) {
       animate={hidden.value ? 'hidden' : 'visible'}
     >
       <Box>ngockhoi96</Box>
-      <NavigationList />
+      <Show when={breakpoint === 'lg'}>
+        <NavigationList />
+      </Show>
       <HStack>
-        <Box>Search btn</Box>
+        {/* <Box>Search btn</Box>
         <Box>Theme switcher</Box>
-        <Box>Language selector</Box>
+        <Box>Language selector</Box> */}
         <Separator h={10} borderColor='fgSecondary' orientation='vertical' />
         <SubscribeButton />
         <GithubStarButton count={starCount} />
