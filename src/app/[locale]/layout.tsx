@@ -108,7 +108,9 @@ async function LocaleLayout({ children }: PropsWithChildren) {
         <LocaleProvider>
           <ThemeProvider>
             <NavigationBar starCount={starCount} />
-            <Box as='main'>{children}</Box>
+            <Box as='main' flex={1}>
+              {children}
+            </Box>
             <ScrollToTopButton />
             <Footer />
           </ThemeProvider>

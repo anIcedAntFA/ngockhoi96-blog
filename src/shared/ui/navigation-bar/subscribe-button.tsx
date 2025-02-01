@@ -1,4 +1,4 @@
-import { Icon } from '@chakra-ui/react';
+import { Box, Icon } from '@chakra-ui/react';
 import { Mail } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -9,39 +9,49 @@ function SubscribeButton() {
 
   return (
     <Button
-      w={32}
+      overflow='hidden'
+      w={{ base: 8, xl: '137px' }}
       color='fgTertiary'
+      fontSize={{ base: 'sm', xl: 'md' }}
       fontWeight='semibold'
       bg='primary'
-      shadow='md'
+      border='2px solid'
+      borderColor='primary'
+      shadow={{ base: 'sm', xl: 'md' }}
       _hover={{
         bg: 'primary/90',
         _dark: { bg: 'green.400' },
         '& > svg': {
-          w: 5,
-          h: 5,
+          w: { base: 4, xl: 5 },
+          h: { base: 4, xl: 5 },
           opacity: 1,
           animation: 'bounce 0.8s ease-in-out infinite',
         },
       }}
-      _active={{
-        scale: 0.95,
-      }}
+      _active={{ scale: 0.95 }}
       aria-label={t('ariaLabel')}
       rounded='md'
+      size={{ base: 'sm', xl: 'md' }}
       transitionDuration='moderate'
-      transitionProperty='background, scale'
+      transitionProperty='width, background, scale'
     >
       <Icon
-        w={0}
-        h={0}
-        opacity={0}
+        w={4}
+        h={4}
         transitionDuration='slower'
         transitionProperty='width, height, opacity'
+        xl={{ w: 0, h: 0, opacity: 0 }}
       >
         <Mail />
       </Icon>
-      {t('label')}
+      <Box
+        as='span'
+        display='none'
+        w={0}
+        xl={{ w: 'full', display: 'inline-block' }}
+      >
+        {t('label')}
+      </Box>
     </Button>
   );
 }

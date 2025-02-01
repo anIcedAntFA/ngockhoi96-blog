@@ -68,7 +68,14 @@ function Footer() {
       borderColor='fgBase'
       borderTop='1px solid'
     >
-      <Flex align='center' gap={1}>
+      <Flex
+        align='center'
+        direction={{
+          base: 'column',
+          md: 'row',
+        }}
+        gap={1}
+      >
         <Text color='fgBase'>{t('githubInfo.infoText')}</Text>
         <NavItem
           aria-label='Github repository'
@@ -78,7 +85,14 @@ function Footer() {
           {t('githubInfo.linkText')}
         </NavItem>
       </Flex>
-      <Flex align='center' gap={1}>
+      <Flex
+        align='center'
+        direction={{
+          base: 'column',
+          md: 'row',
+        }}
+        gap={1}
+      >
         <Text color='fgBase'>{t('emailInfo.infoText')}</Text>
         <NavItem
           aria-label='Email address'

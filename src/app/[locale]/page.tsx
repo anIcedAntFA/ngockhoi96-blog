@@ -8,10 +8,8 @@ export default function Home() {
 
   return (
     <div>
-      <main>
-        {t('metadata.title')}
-        <ColorModeButton />
-      </main>
+      {t('metadata.title')}
+      <ColorModeButton />
       <Box bg='bg.default'>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et, quam fuga.
         Facere, distinctio aperiam? Nobis assumenda, esse quas minus aperiam at
