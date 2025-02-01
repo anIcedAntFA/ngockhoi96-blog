@@ -9,6 +9,7 @@ import useBoolean from '@/shared/lib/utility-hooks/use-boolean';
 
 import GithubStarButton from './github-star-button';
 import NavigationList from './navigation-list';
+import SearchDialogButton from './search-dialog-button';
 import SubscribeButton from './subscribe-button';
 
 type NavigationBarProps = {
@@ -73,7 +74,12 @@ function NavigationBar({ starCount }: NavigationBarProps) {
         {/* <Box>Search btn</Box>
         <Box>Theme switcher</Box>
         <Box>Language selector</Box> */}
-        <Separator h={10} borderColor='fgSecondary' orientation='vertical' />
+        <SearchDialogButton />
+        <Separator
+          h={{ base: 9, xl: 10 }}
+          borderColor='fgSecondary'
+          orientation='vertical'
+        />
         <SubscribeButton />
         <GithubStarButton count={starCount} />
       </HStack>

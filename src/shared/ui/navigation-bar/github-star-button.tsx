@@ -41,7 +41,7 @@ function GithubStarButton({
           textDecoration: 'none',
           backgroundColor: 'primary/10',
           '& svg': {
-            animation: 'githubStarIcon 0.6s forwards',
+            animation: 'githubStarIcon ease-in-out 0.6s forwards',
           },
           '& span': {
             color: 'fg',
