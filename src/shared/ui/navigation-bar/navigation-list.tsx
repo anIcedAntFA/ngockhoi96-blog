@@ -351,6 +351,7 @@ function NavigationList() {
       left='50%'
       transform='translateX(-50%)'
       aria-labelledby='main-menu-content'
+      xl={{ pos: 'static', transform: 'unset' }}
     >
       <List.Root
         id='main-menu-content'

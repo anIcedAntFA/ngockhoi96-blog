@@ -146,16 +146,27 @@ const customKeyframes = defineKeyframes({
       transform: 'scale(1)',
     },
     '25%': {
-      transform: 'scale(0.8)',
+      transform: 'scale(0.75)',
     },
     '50%': {
       transform: 'scale(1)',
     },
     '75%': {
-      transform: 'scale(1.6)',
+      transform: 'scale(1.5)',
     },
     '100%': {
-      transform: 'scale(1.2)',
+      transform: 'scale(1.25)',
+    },
+  },
+  searchIcon: {
+    '0%': {
+      transform: 'scale(0.75)',
+    },
+    '50%': {
+      transform: 'scale(1.25)',
+    },
+    '100%': {
+      transform: 'scale(1)',
     },
   },
 });
