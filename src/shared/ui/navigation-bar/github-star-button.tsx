@@ -32,7 +32,7 @@ function GithubStarButton({
     >
       <ChakraLink
         alignItems='center'
-        h={{ base: 9, xl: 10 }}
+        h={9}
         p={2}
         border='2px solid'
         borderColor='primary'
@@ -44,7 +44,7 @@ function GithubStarButton({
             animation: 'githubStarIcon ease-in-out 0.6s forwards',
           },
           '& span': {
-            color: 'fg',
+            color: 'fg.default',
           },
         }}
         transition='background 0.3s'
@@ -57,8 +57,8 @@ function GithubStarButton({
         <HStack
           align='center'
           overflowX='hidden'
-          w={{ base: '24px', xl: '68px' }}
-          h={{ base: 9, xl: 10 }}
+          w={{ base: '24px', xl: '56px' }}
+          h={9}
           transition='width 0.3s'
         >
           <Icon
@@ -69,12 +69,12 @@ function GithubStarButton({
             color='orange.400'
             fill='orange.400'
             _dark={{ color: 'yellow.300', fill: 'yellow.300' }}
-            xl={{ w: 5, h: 5 }}
+            // xl={{ w: 5, h: 5 }}
           />
           <Box
             as='span'
             color='fgSecondary'
-            fontSize='md'
+            fontSize='sm'
             fontWeight='semibold'
             transition='color 0.3s'
           >
@@ -82,16 +82,16 @@ function GithubStarButton({
           </Box>
         </HStack>
         <Separator
-          h={{ base: 9, xl: 10 }}
+          h={9}
           borderColor='primary'
           orientation='vertical'
           size='md'
         />
         <Box
           as='span'
-          minW={{ base: 5, xl: 6 }}
+          minW={5}
           color='fgSecondary'
-          fontSize='md'
+          fontSize='sm'
           fontWeight='semibold'
           textAlign='center'
           transition='color 0.3s'

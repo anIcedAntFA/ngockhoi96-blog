@@ -12,18 +12,18 @@ function SubscribeButton() {
     <Tooltip content='Subscribe to your email' showArrow>
       <Button
         overflow='hidden'
-        w={{ base: 8, xl: '137px' }}
+        w={{ base: 8, xl: '120px' }}
         color='fgTertiary'
-        fontSize={{ base: 'sm', xl: 'md' }}
+        fontSize={'sm'}
         fontWeight='semibold'
         bg='primary'
-        shadow={{ base: 'sm', xl: 'md' }}
+        shadow={'sm'}
         _hover={{
           bg: 'primary/90',
           _dark: { bg: 'green.400' },
           '& > svg': {
-            w: { base: 4, xl: 5 },
-            h: { base: 4, xl: 5 },
+            w: 4,
+            h: 4,
             opacity: 1,
             animation: 'bounce 0.8s ease-in-out infinite',
           },
@@ -31,7 +31,7 @@ function SubscribeButton() {
         _active={{ scale: 0.95 }}
         aria-label={t('ariaLabel')}
         rounded='md'
-        size={{ base: 'sm', xl: 'md' }}
+        size={'sm'}
         transitionDuration='moderate'
         transitionProperty='width, background, scale'
       >
