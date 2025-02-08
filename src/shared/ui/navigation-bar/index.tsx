@@ -17,6 +17,7 @@ import useBoolean from '@/shared/lib/utility-hooks/use-boolean';
 import GithubStarButton from './github-star-button';
 import NavigationList from './navigation-list';
 import SearchBoxButton from './search-box-button';
+import SettingDropdownButton from './setting-dropdown-button';
 import SubscribeButton from './subscribe-button';
 
 type NavigationBarProps = {
@@ -48,46 +49,49 @@ function NavigationBar({ starCount }: NavigationBarProps) {
   const breakpoint = useBreakpoint({ breakpoints: ['lg'] });
 
   return (
-    <Container px='1rem'>
-      <MotionHeader
-        ref={headerRef}
-        as='header'
-        pos='sticky'
-        zIndex='sticky'
-        top={0}
-        justify='space-between'
-        h={`${DESKTOP_HEADER_HEIGHT}px`}
-        px={6}
-        py={2}
-        bg='bg.default'
-        css={{
-          transition: 'box-shadow 0.3s ease-in-out',
-          '&[data-blur="true"]': {
-            boxShadow: '0 1px 6px 0 {colors.fgBase/20}',
-            backdropFilter: 'blur(20px)',
-          },
-        }}
-        variants={{
-          visible: { y: 0 },
-          hidden: { y: '-100%' },
-        }}
-        transition={{ type: 'spring', bounce: 20, damping: 12, stiffness: 80 }}
-        animate={hidden.value ? 'hidden' : 'visible'}
-      >
-        <HStack>
-          <Box fontSize='lg'>ngockhoi96</Box>
-          <Show when={breakpoint === 'lg'}>
-            <NavigationList />
-          </Show>
+    <MotionHeader
+      ref={headerRef}
+      as='header'
+      pos='sticky'
+      zIndex='dropdown'
+      top={0}
+      justify='space-between'
+      h={`${DESKTOP_HEADER_HEIGHT}px`}
+      px={6}
+      py={2}
+      bg='bg.default'
+      css={{
+        transition: 'box-shadow 0.3s ease-in-out',
+        '&[data-blur="true"]': {
+          boxShadow: '0 1px 6px 0 {colors.fgBase/20}',
+          backdropFilter: 'blur(20px)',
+        },
+      }}
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: '-100%' },
+      }}
+      transition={{ type: 'spring', bounce: 20, damping: 12, stiffness: 80 }}
+      animate={hidden.value ? 'hidden' : 'visible'}
+    >
+      <Container px='1rem'>
+        <HStack justify='space-between'>
+          <HStack>
+            <Box fontSize='lg'>ngockhoi96</Box>
+            <Show when={breakpoint === 'lg'}>
+              <NavigationList />
+            </Show>
+          </HStack>
+          <HStack>
+            <SearchBoxButton />
+            <SettingDropdownButton />
+            <Separator h={9} borderColor='fgSecondary' orientation='vertical' />
+            <SubscribeButton />
+            <GithubStarButton count={starCount} />
+          </HStack>
         </HStack>
-        <HStack>
-          <SearchBoxButton />
-          <Separator h={9} borderColor='fgSecondary' orientation='vertical' />
-          <SubscribeButton />
-          <GithubStarButton count={starCount} />
-        </HStack>
-      </MotionHeader>
-    </Container>
+      </Container>
+    </MotionHeader>
   );
 }
 
