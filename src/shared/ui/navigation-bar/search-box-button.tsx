@@ -12,6 +12,7 @@ import {
   VisuallyHidden,
 } from '@chakra-ui/react';
 import { CircleX, Search } from 'lucide-react';
+import { motion, useAnimation } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import type { ComponentRef } from 'react';
 import { useEffect, useRef, useState } from 'react';
@@ -27,9 +28,12 @@ import {
 import { InputGroup } from '../input-group';
 import { Tooltip } from '../tooltip';
 
+const MotionIcon = motion.create(Icon);
+
 function SearchBoxButton() {
   const [searchText, setSearchText] = useState<string>('');
 
+  const placeholderRef = useRef<HTMLParagraphElement>(null);
   const inputRef = useRef<ComponentRef<'input'>>(null);
 
   const searchBox = useDialog();
@@ -37,6 +41,8 @@ function SearchBoxButton() {
   const t = useTranslations('components.search');
 
   const breakpoint = useBreakpoint({ breakpoints: ['2xl'] });
+
+  const controls = useAnimation();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -56,6 +62,15 @@ function SearchBoxButton() {
   const clearSearchText = () => {
     setSearchText('');
   };
+
+  const handleMouseEnter = () => {
+    controls.start('animate');
+  };
+
+  const handleMouseLeave = () => {
+    controls.start('normal');
+  };
+
   return (
     <DialogRootProvider
       motionPreset='slide-in-top'
@@ -90,16 +105,32 @@ function SearchBoxButton() {
             rounded='md'
             size='sm'
             variant='outline'
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            <Icon
+            <MotionIcon
               as={Search}
               w={4}
               h={4}
               color='fgSecondary'
-              transition='color 0.2s ease-in-out'
+              variants={{
+                normal: { x: 0, y: 0 },
+                animate: {
+                  x: [0, 0, -4, 0],
+                  y: [0, -4, 0, 0],
+                },
+              }}
+              transition={{
+                duration: 0.8,
+                bounce: 0.2,
+                delay: 0.1,
+              }}
+              animate={controls}
+              css={{ transition: 'color 0.2s ease-in-out' }}
             />
             <HStack w='full'>
               <Text
+                ref={placeholderRef}
                 flex={1}
                 color='fgSecondary'
                 fontWeight='medium'
@@ -144,10 +175,7 @@ function SearchBoxButton() {
               bg='transparent'
               _hover={{
                 _before: { opacity: 1, scale: 1 },
-                _icon: {
-                  color: 'primary',
-                  animation: 'searchIcon 0.5s ease-in-out',
-                },
+                _icon: { color: 'primary' },
               }}
               _active={{ scale: 0.95 }}
               _before={{
@@ -157,21 +185,36 @@ function SearchBoxButton() {
                 rounded: 'md',
                 bg: 'primary/10',
                 opacity: 0,
-                scale: 0.8,
-                transitionDuration: 'slow',
+                scale: 0.6,
+                transitionDuration: 'moderate',
                 transitionProperty: 'opacity, scale',
                 transitionTimingFunction: 'ease-in-out',
               }}
               aria-label={t('searchButton.placeholder')}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
               rounded='md'
               size='sm'
             >
-              <Icon
+              <MotionIcon
                 as={Search}
                 w={5}
                 h={5}
                 color='fg.default'
-                transition='color 0.3s ease-in-out'
+                variants={{
+                  normal: { x: 0, y: 0 },
+                  animate: {
+                    x: [0, 0, -3, 0],
+                    y: [0, -4, 0, 0],
+                  },
+                }}
+                transition={{
+                  duration: 0.8,
+                  bounce: 0.2,
+                  delay: 0.1,
+                }}
+                animate={controls}
+                css={{ transition: 'color 0.2s ease-in-out' }}
               />
             </IconButton>
           </DialogTrigger>

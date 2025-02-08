@@ -40,12 +40,8 @@ function GithubStarButton({
         _hover={{
           textDecoration: 'none',
           backgroundColor: 'primary/10',
-          '& svg': {
-            animation: 'githubStarIcon ease-in-out 0.6s forwards',
-          },
-          '& span': {
-            color: 'fg.default',
-          },
+          '& svg': { animation: 'githubStarIcon ease-in-out 0.6s forwards' },
+          '& span': { color: 'fg.default' },
         }}
         transition='background 0.3s'
         aria-label={t('ariaLabel')}
@@ -69,7 +65,6 @@ function GithubStarButton({
             color='orange.400'
             fill='orange.400'
             _dark={{ color: 'yellow.300', fill: 'yellow.300' }}
-            // xl={{ w: 5, h: 5 }}
           />
           <Box
             as='span'
