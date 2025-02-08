@@ -22,22 +22,22 @@ function SubscribeButton() {
           bg: 'primary/90',
           _dark: { bg: 'green.400' },
           '& > svg': {
-            w: 4,
-            h: 4,
+            w: { base: 4, sm: 5 },
+            h: { base: 4, sm: 5 },
             opacity: 1,
             animation: 'bounce 0.8s ease-in-out infinite',
           },
         }}
-        _active={{ scale: 0.95 }}
+        _active={{ scale: 0.9 }}
         aria-label={t('ariaLabel')}
-        rounded='md'
-        size={'sm'}
+        rounded={{ base: 'sm', sm: 'md' }}
+        size={{ base: 'xs', sm: 'sm' }}
         transitionDuration='moderate'
         transitionProperty='width, background, scale'
       >
         <Icon
-          w={4}
-          h={4}
+          w={{ base: 4, sm: 4.5 }}
+          h={{ base: 4, sm: 4.5 }}
           transitionDuration='slower'
           transitionProperty='width, height, opacity'
           xl={{ w: 0, h: 0, opacity: 0 }}

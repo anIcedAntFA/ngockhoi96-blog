@@ -7,7 +7,7 @@ import {
   Kbd,
   Show,
   Text,
-  useBreakpoint,
+  useBreakpointValue,
   useDialog,
   VisuallyHidden,
 } from '@chakra-ui/react';
@@ -40,7 +40,7 @@ function SearchBoxButton() {
 
   const t = useTranslations('components.search');
 
-  const breakpoint = useBreakpoint({ breakpoints: ['2xl'] });
+  const isLargeDesktop = useBreakpointValue({ base: false, '2xl': true });
 
   const controls = useAnimation();
 
@@ -79,7 +79,7 @@ function SearchBoxButton() {
       size={{ base: 'md', xl: 'lg' }}
       value={searchBox}
     >
-      {breakpoint === '2xl' ? (
+      {isLargeDesktop ? (
         <DialogTrigger asChild>
           <Button
             display='flex'
@@ -193,13 +193,13 @@ function SearchBoxButton() {
               aria-label={t('searchButton.placeholder')}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              rounded='md'
-              size='sm'
+              rounded={{ base: 'sm', sm: 'md' }}
+              size={{ base: 'xs', sm: 'sm' }}
             >
               <MotionIcon
                 as={Search}
-                w={5}
-                h={5}
+                w={{ base: 4, sm: 4.5 }}
+                h={{ base: 4, sm: 4.5 }}
                 color='fg.default'
                 variants={{
                   normal: { x: 0, y: 0 },
