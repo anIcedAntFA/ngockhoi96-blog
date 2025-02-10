@@ -169,6 +169,39 @@ const customKeyframes = defineKeyframes({
       transform: 'scale(1)',
     },
   },
+  hamburgerButtonLineTop: {
+    '0%': {
+      transform: 'translateY(0)',
+    },
+    '50%': {
+      transform: 'translateY(100%)',
+    },
+    '100%': {
+      transform: 'translateY(0)',
+    },
+  },
+  hamburgerButtonLineMiddle: {
+    '0%': {
+      transform: 'scaleX(100%)',
+    },
+    '50%': {
+      transform: 'scaleX(120%)',
+    },
+    '100%': {
+      transform: 'scaleX(100%)',
+    },
+  },
+  hamburgerButtonLineBottom: {
+    '0%': {
+      transform: 'translateY(0)',
+    },
+    '50%': {
+      transform: 'translateY(-100%)',
+    },
+    '100%': {
+      transform: 'translateY(0)',
+    },
+  },
 });
 
 const customAnimationStyles = defineAnimationStyles({

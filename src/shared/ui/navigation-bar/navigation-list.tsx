@@ -1,21 +1,19 @@
 import {
   Box,
-  Button,
   Link as ChakraLink,
   For,
-  Icon,
   List,
   Show,
   useDisclosure,
 } from '@chakra-ui/react';
-import { Contact, Home, Newspaper, Package } from 'lucide-react';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { useTranslations, type MessageKeys } from 'next-intl';
 import type { ComponentRef } from 'react';
-import { useRef, type ReactElement } from 'react';
+import { useRef } from 'react';
 
 import { Link as LocaleLink, type Pathname } from '@/shared/lib/i18n';
 
+import { Button, type ButtonProps } from '../button';
 import {
   MenuContent,
   MenuItem,
@@ -25,62 +23,75 @@ import {
 } from '../menu';
 
 type NavigationListKey = MessageKeys<
-  { home: string; about: string; articles: string; resources: string },
-  'home' | 'about' | 'articles' | 'resources'
+  {
+    home: string;
+    about: string;
+    articles: string;
+    category: string;
+    resources: string;
+  },
+  'home' | 'about' | 'articles' | 'category' | 'resources'
 >;
 
-const navigationList = (
+export const navigationList = (
   t: (key: NavigationListKey) => string,
 ): {
   id: number;
   type: 'link' | 'menu';
   title: string;
-  icon: ReactElement;
+  // icon: ReactElement;
   href: Pathname;
 }[] => {
   return [
-    {
-      id: 1,
-      type: 'link',
-      title: t('home'),
-      icon: <Home />,
-      href: '/',
-    },
+    // {
+    //   id: 1,
+    //   type: 'link',
+    //   title: t('home'),
+    //   icon: <Home />,
+    //   href: '/',
+    // },
     {
       id: 2,
       type: 'link',
-      title: t('about'),
-      icon: <Contact />,
-      href: '/about',
+      title: t('articles'),
+      // icon: <Newspaper />,
+      href: '/articles',
     },
     {
       id: 3,
-      type: 'link',
-      title: t('articles'),
-      icon: <Newspaper />,
-      href: '/articles',
+      type: 'menu',
+      title: t('category'),
+      // icon: <Shapes />,
+      href: '/category',
     },
     {
       id: 4,
       type: 'menu',
       title: t('resources'),
-      icon: <Package />,
+      // icon: <Package />,
       href: '/resources',
+    },
+    {
+      id: 5,
+      type: 'link',
+      title: t('about'),
+      // icon: <Contact />,
+      href: '/about',
     },
   ];
 };
 
-type NavItemProps = {
+type NavItemProps = ButtonProps & {
   data: {
     type: 'link' | 'menu';
     title: string;
-    icon: ReactElement;
+    // icon: ReactElement;
     href: Pathname;
   };
 };
 
-function NavItem({ data }: NavItemProps) {
-  const { type, title, icon, href } = data;
+function NavItem({ data, ...restProps }: NavItemProps) {
+  const { type, title, href } = data;
 
   const btnRef = useRef<ComponentRef<'button'>>(null);
 
@@ -95,9 +106,9 @@ function NavItem({ data }: NavItemProps) {
       <ChakraLink
         pos='relative'
         justifyContent='center'
-        gap={{ lg: 1, xl: 2 }}
+        gap={1.5}
         overflow='hidden'
-        px={{ lg: 2, xl: 3 }}
+        px={3}
         py={2}
         _hover={{
           textDecoration: 'none',
@@ -118,7 +129,9 @@ function NavItem({ data }: NavItemProps) {
           height: 0.5,
           bg: 'primary',
           opacity: 0,
-          transition: 'width 0.3s, opacity 0.3s',
+          transitionDuration: '0.3s',
+          transitionProperty: 'width, opacity',
+          transitionTimingFunction: 'ease-in-out',
         }}
         _after={{
           content: '""',
@@ -130,7 +143,9 @@ function NavItem({ data }: NavItemProps) {
           height: 0,
           bg: 'primary/10',
           opacity: 0,
-          transition: 'height 0.3s, opacity 0.3s',
+          transitionDuration: '0.3s',
+          transitionProperty: 'height, opacity',
+          transitionTimingFunction: 'ease-in-out',
         }}
         outline='none'
         asChild
@@ -153,14 +168,14 @@ function NavItem({ data }: NavItemProps) {
         rounded='md'
       >
         <LocaleLink href={href}>
-          <Icon w={4} h={4} transition='color 0.3s' xl={{ w: 5, h: 5 }}>
+          {/* <Icon w={4.5} h={4.5} transition='color 0.2s ease-in-out'>
             {icon}
-          </Icon>
+          </Icon> */}
           <Box
             as='span'
-            fontSize={{ lg: 'sm', xl: 'md' }}
+            fontSize='md'
             fontWeight='medium'
-            transition='color 0.3s'
+            transition='color 0.2s ease-in-out'
           >
             {title}
           </Box>
@@ -183,15 +198,19 @@ function NavItem({ data }: NavItemProps) {
   }
 
   return (
-    <MenuRoot open={open} onEscapeKeyDown={onClose}>
+    <MenuRoot
+      open={open}
+      onPointerDownOutside={onClose}
+      onEscapeKeyDown={onClose}
+    >
       <MenuTrigger asChild>
         <Button
           ref={btnRef}
           pos='relative'
           justifyContent='center'
-          gap={{ lg: 1, xl: 2 }}
+          gap={1.5}
           overflow='hidden'
-          px={{ lg: 2, xl: 3 }}
+          px={3}
           py={2}
           color='fg.default'
           fontSize='md'
@@ -215,7 +234,9 @@ function NavItem({ data }: NavItemProps) {
             height: 0.5,
             bg: 'primary',
             opacity: 0,
-            transition: 'width 0.3s, opacity 0.3s, background 0.3s',
+            transitionDuration: '0.3s',
+            transitionProperty: 'width, opacity, background',
+            transitionTimingFunction: 'ease-in-out',
           }}
           _after={{
             content: '""',
@@ -227,7 +248,9 @@ function NavItem({ data }: NavItemProps) {
             height: 0,
             bg: 'primary/10',
             opacity: 0,
-            transition: 'height 0.3s, opacity 0.3s',
+            transitionDuration: '0.3s',
+            transitionProperty: 'height, opacity',
+            transitionTimingFunction: 'ease-in-out',
           }}
           outline='none'
           css={{
@@ -261,15 +284,17 @@ function NavItem({ data }: NavItemProps) {
           data-selected={open}
           onClick={onToggle}
           rounded='md'
+          {...restProps}
         >
-          <Icon w={4} h={4} transition='color 0.3s' xl={{ w: 5, h: 5 }}>
+          {/* <Icon w={4.5} h={4.5} transition='color 0.2s ease-in-out'>
             {icon}
-          </Icon>
+          </Icon> */}
           <Box
             as='span'
-            fontSize={{ lg: 'sm', xl: 'md' }}
+            flex={1}
+            fontSize='md'
             fontWeight='medium'
-            transition='color 0.3s'
+            transition='color 0.2s ease-in-out'
           >
             {title}
           </Box>
@@ -303,15 +328,14 @@ function DropdownIcon({ active = false }: { active?: boolean }) {
     <Box
       as='span'
       display='inline-block'
-      w={4}
-      ml={{ lg: '6px', xl: 0 }}
+      w='14px'
       _before={{
-        transform: 'rotate(45deg) scaleX(0.7) translate(-3px, 3px)',
+        transform: 'rotate(45deg) scaleX(0.8) translate(-2.8px, 2.8px)',
       }}
       _after={{
-        transform: 'rotate(-45deg) scaleX(0.7) translate(3px, 3px)',
+        transform: 'rotate(-45deg) scaleX(0.8) translate(2.8px, 2.8px)',
       }}
-      transition='color 0.3s'
+      transition='color 0.3s ease-in-out'
       aria-hidden='true'
       css={{
         '&::before, &::after': {
@@ -319,11 +343,13 @@ function DropdownIcon({ active = false }: { active?: boolean }) {
           position: 'absolute',
           top: '48%',
           right: '12px',
-          w: 4,
+          w: '14px',
           h: 0.5,
           bg: 'currentcolor',
           transformOrigin: 'center',
-          transition: 'transform 0.3s, background 0.3s',
+          transitionProperty: 'transform, background',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in-out',
         },
         '&[data-active="true"]': {
           _before: {
@@ -351,7 +377,10 @@ function NavigationList() {
       left='50%'
       transform='translateX(-50%)'
       aria-labelledby='main-menu-content'
-      xl={{ pos: 'static', transform: 'unset' }}
+      transitionDuration='0.3s'
+      transitionProperty='left, transform'
+      transitionTimingFunction='ease-in-out'
+      xl={{ left: 0, transform: 'translateX(35%)' }}
     >
       <List.Root
         id='main-menu-content'
@@ -361,11 +390,18 @@ function NavigationList() {
         gap={2}
       >
         <For each={navigationList(t)}>
-          {({ id, ...restData }) => (
-            <List.Item key={id} display='flex'>
-              <NavItem data={restData} />
-            </List.Item>
-          )}
+          {({ id, ...restData }) => {
+            const getItemWidth = () => {
+              if (id === 3) return '126px';
+              if (id === 4) return '131px';
+              return 'auto';
+            };
+            return (
+              <List.Item key={id} display='flex'>
+                <NavItem data={restData} w={getItemWidth()} />
+              </List.Item>
+            );
+          }}
         </For>
       </List.Root>
     </Box>

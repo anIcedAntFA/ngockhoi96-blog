@@ -16,6 +16,10 @@ export const pathnames = {
   //   en: '/articles/[slug]',
   //   vi: '/bai-viet/[slug]',
   // },
+  '/category': {
+    en: '/category',
+    vi: '/danh-muc',
+  },
   '/resources': {
     en: '/resources',
     vi: '/tai-nguyen',

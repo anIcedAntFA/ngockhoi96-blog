@@ -48,13 +48,13 @@ function SettingDropdownButton() {
           aria-label={'searchButton.placeholder'}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          rounded='md'
-          size='sm'
+          rounded={{ base: 'sm', sm: 'md' }}
+          size={{ base: 'xs', sm: 'sm' }}
         >
           <MotionIcon
             as={Settings}
-            w={5}
-            h={5}
+            w={{ base: 4, sm: 4.5 }}
+            h={{ base: 4, sm: 4.5 }}
             color='fg.default'
             css={{ transition: 'color 0.2s ease-in-out' }}
             transition={{

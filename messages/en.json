@@ -121,6 +121,7 @@
         "home": "Home",
         "about": "About",
         "articles": "Articles",
+        "category": "Category",
         "resources": "Resources"
       },
       "actions": {
