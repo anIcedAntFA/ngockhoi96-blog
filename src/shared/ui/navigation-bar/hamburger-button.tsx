@@ -8,11 +8,11 @@ const MotionLine = motion.create(Box);
 const MOTION_VARIANTS = {
   TOP: {
     open: {
-      top: ['22%', '50%', '50%'],
+      top: ['14%', '44%', '44%'],
       rotate: ['0deg', '0deg', '45deg'],
     },
     closed: {
-      top: ['50%', '50%', '22%'],
+      top: ['44%', '44%', '14%'],
       rotate: ['45deg', '0deg', '0deg'],
     },
   },
@@ -26,22 +26,21 @@ const MOTION_VARIANTS = {
   },
   BOTTOM: {
     open: {
+      top: ['77%', '44%', '44%'],
       rotate: ['0deg', '0deg', '45deg'],
-      top: ['79%', '50%', '50%'],
     },
-
     closed: {
+      top: ['44%', '44%', '77%'],
       rotate: ['45deg', '0deg', '0deg'],
-      top: ['50%', '50%', '79%'],
     },
   },
 };
 
-type HamburgerButtonProps = {
+interface HamburgerButtonProps {
   isActive: boolean;
-  isHidden?: boolean;
   onClick: VoidFunction;
-};
+  isHidden?: boolean;
+}
 
 function HamburgerButton({
   isActive,
@@ -56,8 +55,8 @@ function HamburgerButton({
         hidden: { scale: 0 },
       }}
       animate={isHidden ? 'hidden' : 'visible'}
-      whileTap={{ scale: 0.8 }}
       whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.8 }}
     >
       <MotionConfig
         transition={{
@@ -69,7 +68,18 @@ function HamburgerButton({
         <MotionIconButton
           pos='relative'
           _hover={{
-            '& span': { bg: 'primary' },
+            '& span': {
+              bg: 'primary',
+            },
+            // '&[aria-expanded="false"] span:first-of-type': {
+            //   animation: 'hamburgerButtonLineTop ease-in-out 0.3s',
+            // },
+            // '&[aria-expanded="false"] span:nth-of-type(2)': {
+            //   animation: 'hamburgerButtonLineMiddle ease-in-out 0.3s',
+            // },
+            // '&[aria-expanded="false"] span:last-of-type': {
+            //   animation: 'hamburgerButtonLineBottom ease-in-out 0.3s',
+            // },
           }}
           animate={isActive ? 'open' : 'closed'}
           aria-expanded={isActive}
@@ -77,14 +87,14 @@ function HamburgerButton({
           initial={false}
           onClick={onClick}
           size={{ base: 'xs', sm: 'sm' }}
-          variant='ghost'
+          variant='plain'
         >
           <MotionLine
             as='span'
             pos='absolute'
             top='35%'
-            w={{ base: 7, sm: 8 }}
-            h={{ base: 0.5, sm: '3px' }}
+            w={{ base: 8, sm: 9 }}
+            h={{ base: '3px', sm: '3px' }}
             bg='fg.default'
             transform='translate3d(0, 35%, 0)'
             css={{ transition: 'background 0.2s' }}
@@ -94,9 +104,9 @@ function HamburgerButton({
           <MotionLine
             as='span'
             pos='absolute'
-            top='50%'
-            w={{ base: 7, sm: 8 }}
-            h={{ base: 0.5, sm: '3px' }}
+            top='44%'
+            w={{ base: 8, sm: 9 }}
+            h={{ base: '3px', sm: '3px' }}
             bg='fg.default'
             transform='translate3d(0, -50%, 0)'
             css={{ transition: 'background 0.2s' }}
@@ -107,8 +117,8 @@ function HamburgerButton({
             as='span'
             pos='absolute'
             top='65%'
-            w={{ base: 7, sm: 8 }}
-            h={{ base: 0.5, sm: '3px' }}
+            w={{ base: 8, sm: 9 }}
+            h={{ base: '3px', sm: '3px' }}
             bg='fg.default'
             transform='translate3d(0, -65%, 0)'
             css={{ transition: 'background 0.2s' }}
@@ -121,4 +131,5 @@ function HamburgerButton({
   );
 }
 
+HamburgerButton.displayName = 'NavHamburgerButton';
 export default HamburgerButton;

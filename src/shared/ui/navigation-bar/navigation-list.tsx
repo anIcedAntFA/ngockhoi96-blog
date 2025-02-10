@@ -1,22 +1,19 @@
 import {
   Box,
-  Button,
   Link as ChakraLink,
   For,
-  Icon,
   List,
   Show,
   useDisclosure,
 } from '@chakra-ui/react';
-import { Contact, Newspaper, Package, Shapes } from 'lucide-react';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { useTranslations, type MessageKeys } from 'next-intl';
 import type { ComponentRef } from 'react';
-import { useRef, type ReactElement } from 'react';
+import { useRef } from 'react';
 
 import { Link as LocaleLink, type Pathname } from '@/shared/lib/i18n';
 
-import type { ButtonProps } from '../button';
+import { Button, type ButtonProps } from '../button';
 import {
   MenuContent,
   MenuItem,
@@ -36,13 +33,13 @@ type NavigationListKey = MessageKeys<
   'home' | 'about' | 'articles' | 'category' | 'resources'
 >;
 
-const navigationList = (
+export const navigationList = (
   t: (key: NavigationListKey) => string,
 ): {
   id: number;
   type: 'link' | 'menu';
   title: string;
-  icon: ReactElement;
+  // icon: ReactElement;
   href: Pathname;
 }[] => {
   return [
@@ -57,28 +54,28 @@ const navigationList = (
       id: 2,
       type: 'link',
       title: t('articles'),
-      icon: <Newspaper />,
+      // icon: <Newspaper />,
       href: '/articles',
     },
     {
       id: 3,
       type: 'menu',
       title: t('category'),
-      icon: <Shapes />,
+      // icon: <Shapes />,
       href: '/category',
     },
     {
       id: 4,
       type: 'menu',
       title: t('resources'),
-      icon: <Package />,
+      // icon: <Package />,
       href: '/resources',
     },
     {
       id: 5,
       type: 'link',
       title: t('about'),
-      icon: <Contact />,
+      // icon: <Contact />,
       href: '/about',
     },
   ];
@@ -88,13 +85,13 @@ type NavItemProps = ButtonProps & {
   data: {
     type: 'link' | 'menu';
     title: string;
-    icon: ReactElement;
+    // icon: ReactElement;
     href: Pathname;
   };
 };
 
 function NavItem({ data, ...restProps }: NavItemProps) {
-  const { type, title, icon, href } = data;
+  const { type, title, href } = data;
 
   const btnRef = useRef<ComponentRef<'button'>>(null);
 
@@ -111,7 +108,7 @@ function NavItem({ data, ...restProps }: NavItemProps) {
         justifyContent='center'
         gap={1.5}
         overflow='hidden'
-        px={2}
+        px={3}
         py={2}
         _hover={{
           textDecoration: 'none',
@@ -171,9 +168,9 @@ function NavItem({ data, ...restProps }: NavItemProps) {
         rounded='md'
       >
         <LocaleLink href={href}>
-          <Icon w={4.5} h={4.5} transition='color 0.2s ease-in-out'>
+          {/* <Icon w={4.5} h={4.5} transition='color 0.2s ease-in-out'>
             {icon}
-          </Icon>
+          </Icon> */}
           <Box
             as='span'
             fontSize='md'
@@ -213,7 +210,7 @@ function NavItem({ data, ...restProps }: NavItemProps) {
           justifyContent='center'
           gap={1.5}
           overflow='hidden'
-          px={2}
+          px={3}
           py={2}
           color='fg.default'
           fontSize='md'
@@ -289,11 +286,12 @@ function NavItem({ data, ...restProps }: NavItemProps) {
           rounded='md'
           {...restProps}
         >
-          <Icon w={4.5} h={4.5} transition='color 0.2s ease-in-out'>
+          {/* <Icon w={4.5} h={4.5} transition='color 0.2s ease-in-out'>
             {icon}
-          </Icon>
+          </Icon> */}
           <Box
             as='span'
+            flex={1}
             fontSize='md'
             fontWeight='medium'
             transition='color 0.2s ease-in-out'
@@ -331,7 +329,6 @@ function DropdownIcon({ active = false }: { active?: boolean }) {
       as='span'
       display='inline-block'
       w='14px'
-      ml={1}
       _before={{
         transform: 'rotate(45deg) scaleX(0.8) translate(-2.8px, 2.8px)',
       }}
@@ -395,8 +392,8 @@ function NavigationList() {
         <For each={navigationList(t)}>
           {({ id, ...restData }) => {
             const getItemWidth = () => {
-              if (id === 3) return '138px';
-              if (id === 4) return '148px';
+              if (id === 3) return '126px';
+              if (id === 4) return '131px';
               return 'auto';
             };
             return (

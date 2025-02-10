@@ -54,7 +54,7 @@ function GithubStarButton({
         <HStack
           align='center'
           overflowX='hidden'
-          w={{ base: '24px', sm: '26px', xl: '56px' }}
+          w={{ base: '24px', sm: '26px', xl: '58px' }}
           h={9}
           transition='width 0.3s'
         >
