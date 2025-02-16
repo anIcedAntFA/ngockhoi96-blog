@@ -6,9 +6,8 @@ import {
   HStack,
   Show,
   useBreakpointValue,
-  useDisclosure,
 } from '@chakra-ui/react';
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll } from 'motion/react';
 import { useRef } from 'react';
 
 import { DESKTOP_HEADER_HEIGHT } from '@/shared/config/theme.config';
@@ -16,15 +15,15 @@ import useBoolean from '@/shared/lib/utility-hooks/use-boolean';
 
 import GithubStarButton from './github-star-button';
 import HamburgerButton from './hamburger-button';
-import MobileMenuDrawer from './mobile-menu-drawer';
+import NavMenuDrawer from './nav-menu-drawer';
 import NavigationList from './navigation-list';
 import SearchBoxButton from './search-box-button';
 import SettingDropdownButton from './setting-dropdown-button';
 import SubscribeButton from './subscribe-button';
 
-type NavigationBarProps = {
+interface NavigationBarProps {
   starCount: number;
-};
+}
 
 const HIDE_THRESHOLD = DESKTOP_HEADER_HEIGHT * 3;
 const BLUR_THRESHOLD = DESKTOP_HEADER_HEIGHT;
@@ -35,7 +34,6 @@ function NavigationBar({ starCount }: NavigationBarProps) {
   const headerRef = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll();
-  const { open, onToggle } = useDisclosure();
   const hidden = useBoolean(false);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -89,16 +87,14 @@ function NavigationBar({ starCount }: NavigationBarProps) {
               <SettingDropdownButton />
               <GithubStarButton count={starCount} />
               <SubscribeButton />
-              <HamburgerButton
-                isActive={open}
-                isHidden={isDesktop}
-                onClick={onToggle}
-              />
+              <HamburgerButton isHidden={isDesktop} />
             </HStack>
           </HStack>
         </Container>
       </MotionHeader>
-      <MobileMenuDrawer isOpen={open} />
+      <Show when={!isDesktop}>
+        <NavMenuDrawer />
+      </Show>
     </>
   );
 }

@@ -1,6 +1,8 @@
 import { Box, IconButton } from '@chakra-ui/react';
 import { motion, MotionConfig } from 'motion/react';
 
+import { useMenuDrawer, useMenuDrawerActions } from './navigation-bar.store';
+
 const MotionBox = motion.create(Box);
 const MotionIconButton = motion.create(IconButton);
 const MotionLine = motion.create(Box);
@@ -37,16 +39,13 @@ const MOTION_VARIANTS = {
 };
 
 interface HamburgerButtonProps {
-  isActive: boolean;
-  onClick: VoidFunction;
   isHidden?: boolean;
 }
 
-function HamburgerButton({
-  isActive,
-  isHidden,
-  onClick,
-}: HamburgerButtonProps) {
+function HamburgerButton({ isHidden }: HamburgerButtonProps) {
+  const showMenuDrawer = useMenuDrawer();
+  const { setMenuDrawer } = useMenuDrawerActions();
+
   return (
     <MotionBox
       display={{ base: 'flex', lg: 'none' }}
@@ -81,11 +80,11 @@ function HamburgerButton({
             //   animation: 'hamburgerButtonLineBottom ease-in-out 0.3s',
             // },
           }}
-          animate={isActive ? 'open' : 'closed'}
-          aria-expanded={isActive}
+          animate={showMenuDrawer ? 'open' : 'closed'}
+          aria-expanded={showMenuDrawer}
           aria-label='Open navigation menu'
           initial={false}
-          onClick={onClick}
+          onClick={() => setMenuDrawer(!showMenuDrawer)}
           size={{ base: 'xs', sm: 'sm' }}
           variant='plain'
         >

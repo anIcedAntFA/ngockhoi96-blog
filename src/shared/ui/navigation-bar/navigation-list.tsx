@@ -39,7 +39,6 @@ export const navigationList = (
   id: number;
   type: 'link' | 'menu';
   title: string;
-  // icon: ReactElement;
   href: Pathname;
 }[] => {
   return [
@@ -54,41 +53,36 @@ export const navigationList = (
       id: 2,
       type: 'link',
       title: t('articles'),
-      // icon: <Newspaper />,
       href: '/articles',
     },
     {
       id: 3,
       type: 'menu',
       title: t('category'),
-      // icon: <Shapes />,
       href: '/category',
     },
     {
       id: 4,
       type: 'menu',
       title: t('resources'),
-      // icon: <Package />,
       href: '/resources',
     },
     {
       id: 5,
       type: 'link',
       title: t('about'),
-      // icon: <Contact />,
       href: '/about',
     },
   ];
 };
 
-type NavItemProps = ButtonProps & {
+interface NavItemProps extends ButtonProps {
   data: {
     type: 'link' | 'menu';
     title: string;
-    // icon: ReactElement;
     href: Pathname;
   };
-};
+}
 
 function NavItem({ data, ...restProps }: NavItemProps) {
   const { type, title, href } = data;
@@ -151,26 +145,15 @@ function NavItem({ data, ...restProps }: NavItemProps) {
         asChild
         css={{
           '&[data-active="true"]': {
-            _after: {
-              height: '100%',
-              opacity: 1,
-            },
-            '& > svg': {
-              color: 'primary',
-            },
-            '& > span': {
-              fontWeight: 'semibold',
-              color: 'primary',
-            },
+            _after: { height: '100%', opacity: 1 },
+            '& > svg': { color: 'primary' },
+            '& > span': { color: 'primary' },
           },
         }}
         data-active={isActive}
         rounded='md'
       >
         <LocaleLink href={href}>
-          {/* <Icon w={4.5} h={4.5} transition='color 0.2s ease-in-out'>
-            {icon}
-          </Icon> */}
           <Box
             as='span'
             fontSize='md'
@@ -257,9 +240,7 @@ function NavItem({ data, ...restProps }: NavItemProps) {
             '&[data-selected="true"]': {
               borderColor: 'primary',
               transition: 'border-color 0.3s ease-in-out 0.2s',
-              _after: {
-                bg: 'transparent',
-              },
+              _after: { bg: 'transparent' },
             },
             '&[data-active="true"]': {
               _before: {
@@ -267,17 +248,9 @@ function NavItem({ data, ...restProps }: NavItemProps) {
                 opacity: 0,
                 transitionDelay: '0.2s',
               },
-              _after: {
-                height: '100%',
-                opacity: 1,
-              },
-              '& > svg': {
-                color: 'primary',
-              },
-              '& > span': {
-                fontWeight: 'semibold',
-                color: 'primary',
-              },
+              _after: { height: '100%', opacity: 1 },
+              '& > svg': { color: 'primary' },
+              '& > span': { color: 'primary' },
             },
           }}
           data-active={open}
@@ -286,9 +259,6 @@ function NavItem({ data, ...restProps }: NavItemProps) {
           rounded='md'
           {...restProps}
         >
-          {/* <Icon w={4.5} h={4.5} transition='color 0.2s ease-in-out'>
-            {icon}
-          </Icon> */}
           <Box
             as='span'
             flex={1}
@@ -391,14 +361,9 @@ function NavigationList() {
       >
         <For each={navigationList(t)}>
           {({ id, ...restData }) => {
-            const getItemWidth = () => {
-              if (id === 3) return '126px';
-              if (id === 4) return '131px';
-              return 'auto';
-            };
             return (
               <List.Item key={id} display='flex'>
-                <NavItem data={restData} w={getItemWidth()} />
+                <NavItem data={restData} />
               </List.Item>
             );
           }}
