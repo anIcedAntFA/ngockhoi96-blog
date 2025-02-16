@@ -21,7 +21,6 @@ import { Button } from '../button';
 import {
   DialogBody,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTrigger,
 } from '../dialog';
@@ -198,8 +197,8 @@ function SearchBoxButton() {
             >
               <MotionIcon
                 as={Search}
-                w={{ base: 4, sm: 4.5 }}
-                h={{ base: 4, sm: 4.5 }}
+                w={{ base: 4, sm: 5 }}
+                h={{ base: 4, sm: 5 }}
                 color='fg.default'
                 variants={{
                   normal: { x: 0, y: 0 },
@@ -226,7 +225,7 @@ function SearchBoxButton() {
         rounded={{ base: 'md', xl: 'lg' }}
         fontSize={{ base: 'sm', lg: 'md' }}
       >
-        <DialogHeader>
+        <DialogHeader px={{ base: 4, sm: 6 }}>
           <HStack>
             <InputGroup
               w='full'
@@ -258,6 +257,7 @@ function SearchBoxButton() {
                 onChange={(e) => setSearchText(e.target.value)}
                 placeholder={t('searchBox.placeholder')}
                 rounded='md'
+                size={{ base: 'md', sm: 'lg' }}
                 style={{ paddingInlineStart: '36px', paddingInlineEnd: '40px' }}
                 value={searchText}
               />
@@ -268,17 +268,18 @@ function SearchBoxButton() {
               _hover={{
                 '& kbd': { color: 'primary/80', borderColor: 'primary/80' },
               }}
+              size={{ base: 'sm', sm: 'md' }}
               aria-label={t('searchBox.dialogCloseTriggerLabel')}
               onClick={searchBox.getCloseTriggerProps().onClick}
             >
               <Kbd
-                h={10}
+                h={{ base: 10, sm: 11 }}
                 px={2}
                 py={3}
                 bg='gray.100'
                 borderColor='gray.300'
                 _dark={{ borderColor: 'colors.snow/30', bg: 'gray.100/10' }}
-                size='md'
+                size={{ base: 'sm', sm: 'md' }}
                 transitionDuration='moderate'
                 transitionProperty='border, color'
                 transitionTimingFunction='ease-in-out'
@@ -289,13 +290,16 @@ function SearchBoxButton() {
             </Button>
           </HStack>
         </DialogHeader>
-        <DialogBody>
+        <DialogBody
+          px={{ base: 4, sm: 6 }}
+          pb={{ base: 4, sm: 6 }}
+          pt={{ base: 1, sm: 2 }}
+        >
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </DialogBody>
-        <DialogFooter></DialogFooter>
       </DialogContent>
     </DialogRootProvider>
   );

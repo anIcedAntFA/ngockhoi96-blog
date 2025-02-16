@@ -280,7 +280,7 @@ function NavMenuDrawer() {
         mt={`calc(${DESKTOP_HEADER_HEIGHT}px - 8px)`}
         maxH={`calc(100dvh - ${DESKTOP_HEADER_HEIGHT}px - 8px)`}
       >
-        <DrawerBody>
+        <DrawerBody px={{ base: 2, sm: 4 }} py={{ base: 1, sm: 2 }}>
           <Box as='nav'>
             <List.Root id='main-menu-content' listStyle='none' align='center'>
               <For each={navigationList}>

@@ -53,8 +53,8 @@ function SettingDropdownButton() {
         >
           <MotionIcon
             as={Settings}
-            w={{ base: 4, sm: 4.5 }}
-            h={{ base: 4, sm: 4.5 }}
+            w={{ base: 4, sm: 5 }}
+            h={{ base: 4, sm: 5 }}
             color='fg.default'
             css={{ transition: 'color 0.2s ease-in-out' }}
             transition={{
