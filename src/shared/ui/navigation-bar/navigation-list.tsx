@@ -3,6 +3,7 @@ import {
   Link as ChakraLink,
   For,
   List,
+  Presence,
   Show,
   useDisclosure,
 } from '@chakra-ui/react';
@@ -337,39 +338,45 @@ function DropdownIcon({ active = false }: { active?: boolean }) {
   );
 }
 
-function NavigationList() {
+interface NavigationListProps {
+  isVisible?: boolean;
+}
+
+function NavigationList({ isVisible }: NavigationListProps) {
   const t = useTranslations('layout.header.navigation');
 
   return (
-    <Box
-      as='nav'
-      pos='absolute'
-      left='50%'
-      transform='translateX(-50%)'
-      aria-labelledby='main-menu-content'
-      transitionDuration='0.3s'
-      transitionProperty='left, transform'
-      transitionTimingFunction='ease-in-out'
-      xl={{ left: 0, transform: 'translateX(35%)' }}
+    <Presence
+      justifyContent={{ base: 'center', xl: 'flex-start' }}
+      flex={1}
+      display={{ base: 'none', lg: 'flex' }}
+      ml={{ xl: 8 }}
+      animationDuration='slow'
+      animationStyle={{ _open: 'scale-fade-in', _closed: 'scale-fade-out' }}
+      lazyMount
+      present={isVisible}
+      unmountOnExit
     >
-      <List.Root
-        id='main-menu-content'
-        listStyle='none'
-        flexDirection='row'
-        align='center'
-        gap={2}
-      >
-        <For each={navigationList(t)}>
-          {({ id, ...restData }) => {
-            return (
-              <List.Item key={id} display='flex'>
-                <NavItem data={restData} />
-              </List.Item>
-            );
-          }}
-        </For>
-      </List.Root>
-    </Box>
+      <Box as='nav' aria-labelledby='main-menu-content'>
+        <List.Root
+          id='main-menu-content'
+          listStyle='none'
+          flexDirection='row'
+          align='center'
+          gap={2}
+        >
+          <For each={navigationList(t)}>
+            {({ id, ...restData }) => {
+              return (
+                <List.Item key={id} display='flex'>
+                  <NavItem data={restData} />
+                </List.Item>
+              );
+            }}
+          </For>
+        </List.Root>
+      </Box>
+    </Presence>
   );
 }
 

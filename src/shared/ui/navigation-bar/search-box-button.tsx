@@ -7,7 +7,6 @@ import {
   Kbd,
   Show,
   Text,
-  useBreakpointValue,
   useDialog,
   VisuallyHidden,
 } from '@chakra-ui/react';
@@ -38,8 +37,6 @@ function SearchBoxButton() {
   const searchBox = useDialog();
 
   const t = useTranslations('components.search');
-
-  const isLargeDesktop = useBreakpointValue({ base: false, '2xl': true });
 
   const controls = useAnimation();
 
@@ -78,44 +75,44 @@ function SearchBoxButton() {
       size={{ base: 'md', xl: 'lg' }}
       value={searchBox}
     >
-      {isLargeDesktop ? (
+      <Tooltip content={t('searchButton.placeholder')} showArrow>
         <DialogTrigger asChild>
-          <Button
-            display='flex'
-            w='220px'
-            color='fgBase'
-            bg='ghostWhite/20'
-            borderWidth='2px'
-            borderColor='transparent'
-            shadow='0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)'
+          <IconButton
+            pos='relative'
+            display={{ base: 'flex', xl: 'none' }}
+            bg='transparent'
             _hover={{
-              bg: 'ghostWhite/60',
-              '&:not(:focus)': { borderColor: 'primary' },
+              _before: { opacity: 1, scale: 1 },
               _icon: { color: 'primary' },
-              '& p, kbd': { color: 'primary' },
             }}
-            _focus={{
-              outline: '2px solid {colors.primary/60}',
-              outlineOffset: 0.5,
+            _active={{ scale: 0.95 }}
+            _before={{
+              content: '""',
+              position: 'absolute',
+              inset: 0,
+              rounded: 'md',
+              bg: 'primary/10',
+              opacity: 0,
+              scale: 0.6,
+              transitionDuration: 'moderate',
+              transitionProperty: 'opacity, scale',
+              transitionTimingFunction: 'ease-in-out',
             }}
-            _dark={{ bg: 'gray.700/70', _hover: { bg: 'gray.700/90' } }}
-            transition='border 0.2s ease-in-out, background 0.2s ease-in-out'
             aria-label={t('searchButton.placeholder')}
-            rounded='md'
-            size='sm'
-            variant='outline'
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            rounded={{ base: 'sm', sm: 'md' }}
+            size='sm'
           >
             <MotionIcon
               as={Search}
-              w={4}
-              h={4}
-              color='fgSecondary'
+              w={5}
+              h={5}
+              color='fg.default'
               variants={{
                 normal: { x: 0, y: 0 },
                 animate: {
-                  x: [0, 0, -4, 0],
+                  x: [0, 0, -3, 0],
                   y: [0, -4, 0, 0],
                 },
               }}
@@ -127,98 +124,96 @@ function SearchBoxButton() {
               animate={controls}
               css={{ transition: 'color 0.2s ease-in-out' }}
             />
-            <HStack w='full'>
-              <Text
-                ref={placeholderRef}
-                flex={1}
-                color='fgSecondary'
-                fontWeight='medium'
-                textAlign='left'
-                transition='color 0.2s ease-in-out'
-              >
-                {t('searchButton.placeholder')}
-              </Text>
-              <HStack gap={1}>
-                <VisuallyHidden>{t('searchButton.press')}</VisuallyHidden>
-                <Kbd
-                  bg='gray.100'
-                  borderColor='gray.300'
-                  _dark={{ borderColor: 'colors.snow/30', bg: 'gray.100/10' }}
-                  transition='color 0.2s ease-in-out'
-                  colorPalette='fgSecondary'
-                  size='sm'
-                >
-                  <abbr title='Control'>Ctrl</abbr>
-                </Kbd>
-                <VisuallyHidden>{t('searchButton.and')}</VisuallyHidden>
-                <Kbd
-                  bg='gray.100'
-                  borderColor='gray.300'
-                  _dark={{ borderColor: 'colors.snow/30', bg: 'gray.100/10' }}
-                  transition='color 0.2s ease-in-out'
-                  colorPalette='fgSecondary'
-                  size='sm'
-                >
-                  K
-                </Kbd>
-                <VisuallyHidden>{t('searchButton.toSearch')}</VisuallyHidden>
-              </HStack>
-            </HStack>
-          </Button>
+          </IconButton>
         </DialogTrigger>
-      ) : (
-        <Tooltip content={t('searchButton.placeholder')} showArrow>
-          <DialogTrigger asChild>
-            <IconButton
-              pos='relative'
-              bg='transparent'
-              _hover={{
-                _before: { opacity: 1, scale: 1 },
-                _icon: { color: 'primary' },
-              }}
-              _active={{ scale: 0.95 }}
-              _before={{
-                content: '""',
-                position: 'absolute',
-                inset: 0,
-                rounded: 'md',
-                bg: 'primary/10',
-                opacity: 0,
-                scale: 0.6,
-                transitionDuration: 'moderate',
-                transitionProperty: 'opacity, scale',
-                transitionTimingFunction: 'ease-in-out',
-              }}
-              aria-label={t('searchButton.placeholder')}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              rounded={{ base: 'sm', sm: 'md' }}
-              size={{ base: 'xs', sm: 'sm' }}
+      </Tooltip>
+      <DialogTrigger asChild>
+        <Button
+          display={{ base: 'none', xl: 'flex' }}
+          w='220px'
+          color='fgBase'
+          bg='ghostWhite/20'
+          borderWidth='2px'
+          borderColor='transparent'
+          shadow='0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%)'
+          _hover={{
+            bg: 'ghostWhite/60',
+            '&:not(:focus)': { borderColor: 'primary' },
+            _icon: { color: 'primary' },
+            '& p, kbd': { color: 'primary' },
+          }}
+          _focus={{
+            outline: '2px solid {colors.primary/60}',
+            outlineOffset: 0.5,
+          }}
+          _dark={{ bg: 'gray.700/70', _hover: { bg: 'gray.700/90' } }}
+          transition='border 0.2s ease-in-out, background 0.2s ease-in-out'
+          aria-label={t('searchButton.placeholder')}
+          rounded='md'
+          size='sm'
+          variant='outline'
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <MotionIcon
+            as={Search}
+            w={4}
+            h={4}
+            color='fgSecondary'
+            variants={{
+              normal: { x: 0, y: 0 },
+              animate: {
+                x: [0, 0, -4, 0],
+                y: [0, -4, 0, 0],
+              },
+            }}
+            transition={{
+              duration: 0.8,
+              bounce: 0.2,
+              delay: 0.1,
+            }}
+            animate={controls}
+            css={{ transition: 'color 0.2s ease-in-out' }}
+          />
+          <HStack w='full'>
+            <Text
+              ref={placeholderRef}
+              flex={1}
+              color='fgSecondary'
+              fontWeight='medium'
+              textAlign='left'
+              transition='color 0.2s ease-in-out'
             >
-              <MotionIcon
-                as={Search}
-                w={{ base: 4, sm: 5 }}
-                h={{ base: 4, sm: 5 }}
-                color='fg.default'
-                variants={{
-                  normal: { x: 0, y: 0 },
-                  animate: {
-                    x: [0, 0, -3, 0],
-                    y: [0, -4, 0, 0],
-                  },
-                }}
-                transition={{
-                  duration: 0.8,
-                  bounce: 0.2,
-                  delay: 0.1,
-                }}
-                animate={controls}
-                css={{ transition: 'color 0.2s ease-in-out' }}
-              />
-            </IconButton>
-          </DialogTrigger>
-        </Tooltip>
-      )}
+              {t('searchButton.placeholder')}
+            </Text>
+            <HStack gap={1}>
+              <VisuallyHidden>{t('searchButton.press')}</VisuallyHidden>
+              <Kbd
+                bg='gray.100'
+                borderColor='gray.300'
+                _dark={{ borderColor: 'colors.snow/30', bg: 'gray.100/10' }}
+                transition='color 0.2s ease-in-out'
+                colorPalette='fgSecondary'
+                size='sm'
+              >
+                <abbr title='Control'>Ctrl</abbr>
+              </Kbd>
+              <VisuallyHidden>{t('searchButton.and')}</VisuallyHidden>
+              <Kbd
+                bg='gray.100'
+                borderColor='gray.300'
+                _dark={{ borderColor: 'colors.snow/30', bg: 'gray.100/10' }}
+                transition='color 0.2s ease-in-out'
+                colorPalette='fgSecondary'
+                size='sm'
+              >
+                K
+              </Kbd>
+              <VisuallyHidden>{t('searchButton.toSearch')}</VisuallyHidden>
+            </HStack>
+          </HStack>
+        </Button>
+      </DialogTrigger>
       <DialogContent
         bg='bg.default'
         color='fg.default'
@@ -258,7 +253,10 @@ function SearchBoxButton() {
                 placeholder={t('searchBox.placeholder')}
                 rounded='md'
                 size={{ base: 'md', sm: 'lg' }}
-                style={{ paddingInlineStart: '36px', paddingInlineEnd: '40px' }}
+                style={{
+                  paddingInlineStart: '36px',
+                  paddingInlineEnd: '40px',
+                }}
                 value={searchText}
               />
             </InputGroup>
