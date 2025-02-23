@@ -38,22 +38,13 @@ const MOTION_VARIANTS = {
   },
 };
 
-interface HamburgerButtonProps {
-  isHidden?: boolean;
-}
-
-function HamburgerButton({ isHidden }: HamburgerButtonProps) {
+function HamburgerButton() {
   const showMenuDrawer = useMenuDrawer();
   const { setMenuDrawer } = useMenuDrawerActions();
 
   return (
     <MotionBox
       display={{ base: 'flex', lg: 'none' }}
-      variants={{
-        visible: { scale: 1 },
-        hidden: { scale: 0 },
-      }}
-      animate={isHidden ? 'hidden' : 'visible'}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.8 }}
     >

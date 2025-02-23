@@ -80,6 +80,7 @@ function SubscribeButton() {
   const t = useTranslations('components.common.subscribeButton');
 
   const isTablet = useBreakpointValue({ base: false, sm: true });
+  const isLargerDesktop = useBreakpointValue({ base: false, xl: true });
 
   const controls = useAnimation();
 
@@ -104,7 +105,11 @@ function SubscribeButton() {
       size='md'
       value={subscribeBox}
     >
-      <Tooltip content='Subscribe with your email' showArrow>
+      <Tooltip
+        content='Subscribe with your email'
+        showArrow
+        disabled={isLargerDesktop}
+      >
         <DialogTrigger asChild>
           <Button
             overflow='hidden'
@@ -162,7 +167,7 @@ function SubscribeButton() {
           pb={{ base: 4, sm: 6 }}
           textAlign='center'
         >
-          <DialogTitle fontSize={{ base: 'lg', lg: 'xl' }}>
+          <DialogTitle fontSize={{ base: 'lg', sm: 'xl', lg: '2xl' }}>
             What’s your email?
           </DialogTitle>
         </DialogHeader>
@@ -180,7 +185,7 @@ function SubscribeButton() {
           </Text>
           <form onSubmit={handleSubmit(onSubmit)}>
             <InputGroup
-              mt={4}
+              mt={6}
               w='full'
               startElementProps={{ paddingInline: 3 }}
               endElementProps={{ paddingInlineStart: 3, paddingInlineEnd: 2 }}
@@ -259,8 +264,6 @@ function SubscribeButton() {
                     transitionDuration='moderate'
                     transitionProperty='background, scale'
                     disabled={!isValid || isSubmitting}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
                   >
                     Subscribe
                   </Button>

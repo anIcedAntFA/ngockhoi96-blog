@@ -1,16 +1,13 @@
 'use client';
 
-import {
-  Box,
-  Container,
-  HStack,
-  Show,
-  useBreakpointValue,
-} from '@chakra-ui/react';
+import { Box, Container, HStack, useBreakpointValue } from '@chakra-ui/react';
 import { motion, useMotionValueEvent, useScroll } from 'motion/react';
 import { useRef } from 'react';
 
-import { DESKTOP_HEADER_HEIGHT } from '@/shared/config/theme.config';
+import {
+  DESKTOP_HEADER_HEIGHT,
+  MOBILE_HEADER_HEIGHT,
+} from '@/shared/config/theme.config';
 import useBoolean from '@/shared/lib/utility-hooks/use-boolean';
 
 import GithubStarButton from './github-star-button';
@@ -25,7 +22,7 @@ interface NavigationBarProps {
   starCount: number;
 }
 
-const HIDE_THRESHOLD = DESKTOP_HEADER_HEIGHT * 3;
+const HIDE_THRESHOLD = DESKTOP_HEADER_HEIGHT * 4;
 const BLUR_THRESHOLD = DESKTOP_HEADER_HEIGHT;
 
 const MotionHeader = motion.create(HStack);
@@ -58,15 +55,19 @@ function NavigationBar({ starCount }: NavigationBarProps) {
         zIndex='dropdown'
         top={0}
         justify='space-between'
-        h={`${DESKTOP_HEADER_HEIGHT}px`}
+        h={{
+          base: `${MOBILE_HEADER_HEIGHT}px`,
+          sm: `${DESKTOP_HEADER_HEIGHT}px`,
+        }}
         px={6}
         py={2}
         bg='bg.default'
         css={{
           transition: 'box-shadow 0.3s ease-in-out',
           '&[data-blur="true"]': {
+            background: 'bg.default/10',
             boxShadow: '0 1px 6px 0 {colors.fgBase/20}',
-            backdropFilter: 'blur(20px)',
+            backdropFilter: 'blur(8px)',
           },
         }}
         variants={{
@@ -79,22 +80,18 @@ function NavigationBar({ starCount }: NavigationBarProps) {
         <Container px={{ base: 0, sm: '1rem' }}>
           <HStack justify='space-between'>
             <Box fontSize={{ base: 'medium', sm: 'lg' }}>ngockhoi96</Box>
-            <Show when={isDesktop}>
-              <NavigationList />
-            </Show>
+            <NavigationList isVisible={isDesktop} />
             <HStack gap={{ base: 2, sm: 3 }}>
               <SearchBoxButton />
               <SettingDropdownButton />
               <GithubStarButton count={starCount} />
               <SubscribeButton />
-              <HamburgerButton isHidden={isDesktop} />
+              <HamburgerButton />
             </HStack>
           </HStack>
         </Container>
       </MotionHeader>
-      <Show when={!isDesktop}>
-        <NavMenuDrawer />
-      </Show>
+      <NavMenuDrawer />
     </>
   );
 }

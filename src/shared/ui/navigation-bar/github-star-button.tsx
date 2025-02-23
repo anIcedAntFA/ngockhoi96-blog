@@ -4,6 +4,7 @@ import {
   HStack,
   Icon,
   Separator,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { StarIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -23,12 +24,15 @@ function GithubStarButton({
 }: GithubStarButtonProps) {
   const t = useTranslations('components.common.githubStarButton');
 
+  const isLargerDesktop = useBreakpointValue({ base: false, xl: true });
+
   return (
     <Tooltip
       content={t('tooltipLabel')}
       showArrow
       openDelay={500}
       closeDelay={300}
+      disabled={isLargerDesktop}
     >
       <ChakraLink
         alignItems='center'

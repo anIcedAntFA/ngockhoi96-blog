@@ -27,7 +27,10 @@ import {
 } from 'lucide-react';
 import type { ReactElement } from 'react';
 
-import { DESKTOP_HEADER_HEIGHT } from '@/shared/config/theme.config';
+import {
+  DESKTOP_HEADER_HEIGHT,
+  MOBILE_HEADER_HEIGHT,
+} from '@/shared/config/theme.config';
 import { Link, type Pathname } from '@/shared/lib/i18n';
 import type { Todo } from '@/shared/lib/utility-types';
 
@@ -189,7 +192,13 @@ function NavMenuItem({ data }: NavMenuItemProps) {
         <Icon w={5} h={5}>
           {icon}
         </Icon>
-        <Box as='span' flexGrow={1} fontSize='md' textAlign='start'>
+        <Box
+          as='span'
+          flexGrow={1}
+          fontSize='md'
+          fontWeight='medium'
+          textAlign='start'
+        >
           {title}
         </Box>
         <Icon
@@ -198,7 +207,12 @@ function NavMenuItem({ data }: NavMenuItemProps) {
           rotate={collapsible.open ? '45deg' : '0'}
         />
       </Collapsible.Trigger>
-      <Collapsible.Content pl={6}>
+      <Collapsible.Content
+        pl={6}
+        bg='primary/5'
+        rounded={{ base: 'md', sm: 'lg' }}
+        boxShadow='inset 0 2px 4px {colors.primary/10}'
+      >
         <List.Root
           as='ol'
           display='grid'
@@ -224,7 +238,9 @@ function NavMenuItem({ data }: NavMenuItemProps) {
                     <Icon w={4} h={4}>
                       {restData.icon}
                     </Icon>
-                    <Box as='span'>{restData.title}</Box>
+                    <Box as='span' fontWeight='medium'>
+                      {restData.title}
+                    </Box>
                   </Link>
                 </ChakraLink>
               </List.Item>
@@ -257,7 +273,7 @@ function NavLinkItem({ data }: NavMenuItemProps) {
         <Icon w={4} h={4}>
           {icon}
         </Icon>
-        <Box as='span' fontSize='md'>
+        <Box as='span' fontSize='md' fontWeight='medium'>
           {title}
         </Box>
       </Link>
@@ -272,13 +288,22 @@ function NavMenuDrawer() {
     <DrawerRoot
       size={{ base: 'full', md: 'md' }}
       open={showMenuDrawer}
+      lazyMount
+      unmountOnExit
       persistentElements={[() => document.querySelector('header')]}
     >
       <DrawerContent
+        display={{ base: 'flex', lg: 'none' }}
         offset={{ base: 2, md: 4 }}
         rounded='md'
-        mt={`calc(${DESKTOP_HEADER_HEIGHT}px - 8px)`}
-        maxH={`calc(100dvh - ${DESKTOP_HEADER_HEIGHT}px - 8px)`}
+        mt={{
+          base: `calc(${MOBILE_HEADER_HEIGHT}px - 8px)`,
+          sm: `calc(${DESKTOP_HEADER_HEIGHT}px - 8px)`,
+        }}
+        maxH={{
+          base: `calc(100dvh - ${MOBILE_HEADER_HEIGHT}px - 8px)`,
+          sm: `calc(100dvh - ${DESKTOP_HEADER_HEIGHT}px - 8px)`,
+        }}
       >
         <DrawerBody px={{ base: 2, sm: 4 }} py={{ base: 1, sm: 2 }}>
           <Box as='nav'>

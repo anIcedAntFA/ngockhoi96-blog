@@ -27,6 +27,7 @@ function SettingDropdownButton() {
       <MenuTrigger asChild>
         <IconButton
           pos='relative'
+          display={{ base: 'none', md: 'flex' }}
           bg='transparent'
           _hover={{
             _before: { opacity: 1, scale: 1 },
@@ -48,8 +49,8 @@ function SettingDropdownButton() {
           aria-label={'searchButton.placeholder'}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          rounded={{ base: 'sm', sm: 'md' }}
-          size={{ base: 'xs', sm: 'sm' }}
+          rounded='md'
+          size='sm'
         >
           <MotionIcon
             as={Settings}
