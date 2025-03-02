@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Container, HStack, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Container, HStack } from '@chakra-ui/react';
 import { motion, useMotionValueEvent, useScroll } from 'motion/react';
 import { useRef } from 'react';
 
@@ -14,6 +14,7 @@ import GithubStarButton from './github-star-button';
 import HamburgerButton from './hamburger-button';
 import NavMenuDrawer from './nav-menu-drawer';
 import NavigationList from './navigation-list';
+import { RssButton } from './rss-button';
 import SearchBoxButton from './search-box-button';
 import SettingDropdownButton from './setting-dropdown-button';
 import SubscribeButton from './subscribe-button';
@@ -43,8 +44,6 @@ function NavigationBar({ starCount }: NavigationBarProps) {
         latest > BLUR_THRESHOLD ? 'true' : 'false';
     }
   });
-
-  const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   return (
     <>
@@ -80,10 +79,15 @@ function NavigationBar({ starCount }: NavigationBarProps) {
         <Container px={{ base: 0, sm: '1rem' }}>
           <HStack justify='space-between'>
             <Box fontSize={{ base: 'medium', sm: 'lg' }}>ngockhoi96</Box>
-            <NavigationList isVisible={isDesktop} />
-            <HStack gap={{ base: 2, sm: 3 }}>
+            <NavigationList />
+            <HStack
+              justifyContent='flex-end'
+              flex={{ base: 1, lg: 'unset' }}
+              gap={{ base: 2, sm: 3 }}
+            >
               <SearchBoxButton />
               <SettingDropdownButton />
+              <RssButton />
               <GithubStarButton count={starCount} />
               <SubscribeButton />
               <HamburgerButton />

@@ -3,7 +3,6 @@ import {
   Link as ChakraLink,
   For,
   List,
-  Presence,
   Show,
   useDisclosure,
 } from '@chakra-ui/react';
@@ -124,7 +123,7 @@ function NavItem({ data, ...restProps }: NavItemProps) {
           height: 0.5,
           bg: 'primary',
           opacity: 0,
-          transitionDuration: '0.3s',
+          transitionDuration: '0.2s',
           transitionProperty: 'width, opacity',
           transitionTimingFunction: 'ease-in-out',
         }}
@@ -138,7 +137,7 @@ function NavItem({ data, ...restProps }: NavItemProps) {
           height: 0,
           bg: 'primary/10',
           opacity: 0,
-          transitionDuration: '0.3s',
+          transitionDuration: '0.2s',
           transitionProperty: 'height, opacity',
           transitionTimingFunction: 'ease-in-out',
         }}
@@ -218,7 +217,7 @@ function NavItem({ data, ...restProps }: NavItemProps) {
             height: 0.5,
             bg: 'primary',
             opacity: 0,
-            transitionDuration: '0.3s',
+            transitionDuration: '0.2s',
             transitionProperty: 'width, opacity, background',
             transitionTimingFunction: 'ease-in-out',
           }}
@@ -232,7 +231,7 @@ function NavItem({ data, ...restProps }: NavItemProps) {
             height: 0,
             bg: 'primary/10',
             opacity: 0,
-            transitionDuration: '0.3s',
+            transitionDuration: '0.2s',
             transitionProperty: 'height, opacity',
             transitionTimingFunction: 'ease-in-out',
           }}
@@ -240,14 +239,14 @@ function NavItem({ data, ...restProps }: NavItemProps) {
           css={{
             '&[data-selected="true"]': {
               borderColor: 'primary',
-              transition: 'border-color 0.3s ease-in-out 0.2s',
+              transition: 'border-color 0.2s ease-in-out 0.1s',
               _after: { bg: 'transparent' },
             },
             '&[data-active="true"]': {
               _before: {
                 bg: 'transparent',
                 opacity: 0,
-                transitionDelay: '0.2s',
+                transitionDelay: '0.1s',
               },
               _after: { height: '100%', opacity: 1 },
               '& > svg': { color: 'primary' },
@@ -306,7 +305,7 @@ function DropdownIcon({ active = false }: { active?: boolean }) {
       _after={{
         transform: 'rotate(-45deg) scaleX(0.8) translate(2.8px, 2.8px)',
       }}
-      transition='color 0.3s ease-in-out'
+      transition='color 0.2s ease-in-out'
       aria-hidden='true'
       css={{
         '&::before, &::after': {
@@ -319,7 +318,7 @@ function DropdownIcon({ active = false }: { active?: boolean }) {
           bg: 'currentcolor',
           transformOrigin: 'center',
           transitionProperty: 'transform, background',
-          transitionDuration: '0.3s',
+          transitionDuration: '0.2s',
           transitionTimingFunction: 'ease-in-out',
         },
         '&[data-active="true"]': {
@@ -338,45 +337,36 @@ function DropdownIcon({ active = false }: { active?: boolean }) {
   );
 }
 
-interface NavigationListProps {
-  isVisible?: boolean;
-}
-
-function NavigationList({ isVisible }: NavigationListProps) {
+function NavigationList() {
   const t = useTranslations('layout.header.navigation');
 
   return (
-    <Presence
+    <Box
+      as='nav'
       justifyContent={{ base: 'center', xl: 'flex-start' }}
       flex={1}
       display={{ base: 'none', lg: 'flex' }}
-      ml={{ xl: 8 }}
-      animationDuration='slow'
-      animationStyle={{ _open: 'scale-fade-in', _closed: 'scale-fade-out' }}
-      lazyMount
-      present={isVisible}
-      unmountOnExit
+      ml={{ xl: 4 }}
+      aria-labelledby='main-menu-content'
     >
-      <Box as='nav' aria-labelledby='main-menu-content'>
-        <List.Root
-          id='main-menu-content'
-          listStyle='none'
-          flexDirection='row'
-          align='center'
-          gap={2}
-        >
-          <For each={navigationList(t)}>
-            {({ id, ...restData }) => {
-              return (
-                <List.Item key={id} display='flex'>
-                  <NavItem data={restData} />
-                </List.Item>
-              );
-            }}
-          </For>
-        </List.Root>
-      </Box>
-    </Presence>
+      <List.Root
+        id='main-menu-content'
+        listStyle='none'
+        flexDirection='row'
+        align='center'
+        gap={2}
+      >
+        <For each={navigationList(t)}>
+          {({ id, ...restData }) => {
+            return (
+              <List.Item key={id} display='flex'>
+                <NavItem data={restData} />
+              </List.Item>
+            );
+          }}
+        </For>
+      </List.Root>
+    </Box>
   );
 }
 

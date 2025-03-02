@@ -13,11 +13,13 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Mail } from 'lucide-react';
 import type { Variants } from 'motion/react';
-import { motion, useAnimation } from 'motion/react';
+import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+
+import { useMouseMotion } from '@/shared/lib/utility-hooks';
 
 import { Button } from '../button';
 import {
@@ -29,7 +31,6 @@ import {
   DialogTrigger,
 } from '../dialog';
 import { InputGroup } from '../input-group';
-import { Tooltip } from '../tooltip';
 
 interface FormValue {
   email: string;
@@ -80,17 +81,8 @@ function SubscribeButton() {
   const t = useTranslations('components.common.subscribeButton');
 
   const isTablet = useBreakpointValue({ base: false, sm: true });
-  const isLargerDesktop = useBreakpointValue({ base: false, xl: true });
 
-  const controls = useAnimation();
-
-  const handleMouseEnter = () => {
-    controls.start('animate');
-  };
-
-  const handleMouseLeave = () => {
-    controls.start('normal');
-  };
+  const { controls, handleMouseEnter, handleMouseLeave } = useMouseMotion();
 
   const onSubmit: SubmitHandler<FormValue> = (data) => {
     console.log(data);
@@ -105,57 +97,51 @@ function SubscribeButton() {
       size='md'
       value={subscribeBox}
     >
-      <Tooltip
-        content='Subscribe with your email'
-        showArrow
-        disabled={isLargerDesktop}
-      >
-        <DialogTrigger asChild>
-          <Button
-            overflow='hidden'
-            w={{ base: 8, xl: '120px' }}
-            color='fgTertiary'
-            fontSize='sm'
-            fontWeight='semibold'
-            bg='primary'
-            shadow='sm'
-            _hover={{
-              bg: 'primary/90',
-              _dark: { bg: 'green.400' },
-              '& > svg': {
-                w: { base: 4, sm: 5 },
-                h: { base: 4, sm: 5 },
-                opacity: 1,
-                animation: 'bounce 0.8s ease-in-out infinite',
-              },
-            }}
-            _active={{ scale: 0.9 }}
-            aria-label={t('ariaLabel')}
-            rounded={{ base: 'sm', sm: 'md' }}
-            size={{ base: 'xs', sm: 'sm' }}
-            transitionDuration='moderate'
-            transitionProperty='width, background, scale'
+      <DialogTrigger asChild>
+        <Button
+          overflow='hidden'
+          w={{ base: 8, lg: '120px' }}
+          color='fgTertiary'
+          fontSize='sm'
+          fontWeight='semibold'
+          bg='primary'
+          shadow='sm'
+          _hover={{
+            bg: 'primary/90',
+            _dark: { bg: 'green.400' },
+            '& > svg': {
+              w: { base: 4, sm: 5 },
+              h: { base: 4, sm: 5 },
+              opacity: 1,
+              animation: 'bounce 0.8s ease-in-out infinite',
+            },
+          }}
+          _active={{ scale: 0.9 }}
+          aria-label={t('ariaLabel')}
+          rounded={{ base: 'sm', sm: 'md' }}
+          size={{ base: 'xs', sm: 'sm' }}
+          transitionDuration='moderate'
+          transitionProperty='width, background, scale'
+        >
+          <Icon
+            w={{ base: 4, sm: 5 }}
+            h={{ base: 4, sm: 5 }}
+            lg={{ w: 0, h: 0, opacity: 0 }}
+            transitionDuration='slower'
+            transitionProperty='width, height, opacity'
           >
-            <Icon
-              w={{ base: 4, sm: 5 }}
-              h={{ base: 4, sm: 5 }}
-              transitionDuration='slower'
-              transitionProperty='width, height, opacity'
-              xl={{ w: 0, h: 0, opacity: 0 }}
-            >
-              <Mail />
-            </Icon>
-            <Box
-              as='span'
-              display='none'
-              w={0}
-              xl={{ w: 'full', display: 'inline-block' }}
-            >
-              {t('label')}
-            </Box>
-          </Button>
-        </DialogTrigger>
-      </Tooltip>
+            <Mail />
+          </Icon>
+          <Box
+            as='span'
+            display='none'
+            w={0}
+            lg={{ w: 'full', display: 'inline-block' }}
+          >
+            {t('label')}
+          </Box>
+        </Button>
+      </DialogTrigger>
       <DialogContent
         color='fg.default'
         fontSize={{ base: 'sm', lg: 'md' }}
