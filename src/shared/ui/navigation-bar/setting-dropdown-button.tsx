@@ -1,6 +1,8 @@
 import { Icon, IconButton } from '@chakra-ui/react';
 import { Settings } from 'lucide-react';
-import { motion, useAnimation } from 'motion/react';
+import { motion } from 'motion/react';
+
+import { useMouseMotion } from '@/shared/lib/utility-hooks';
 
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from '../menu';
 import { Switch } from '../switch';
@@ -8,15 +10,7 @@ import { Switch } from '../switch';
 const MotionIcon = motion.create(Icon);
 
 function SettingDropdownButton() {
-  const controls = useAnimation();
-
-  const handleMouseEnter = () => {
-    controls.start('animate');
-  };
-
-  const handleMouseLeave = () => {
-    controls.start('normal');
-  };
+  const { controls, handleMouseEnter, handleMouseLeave } = useMouseMotion();
 
   return (
     <MenuRoot
@@ -54,8 +48,8 @@ function SettingDropdownButton() {
         >
           <MotionIcon
             as={Settings}
-            w={{ base: 4, sm: 5 }}
-            h={{ base: 4, sm: 5 }}
+            w={5}
+            h={5}
             color='fg.default'
             css={{ transition: 'color 0.2s ease-in-out' }}
             transition={{

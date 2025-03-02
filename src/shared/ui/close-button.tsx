@@ -1,8 +1,10 @@
 import type { ButtonProps } from '@chakra-ui/react';
-import { IconButton, Icon } from '@chakra-ui/react';
+import { Icon, IconButton } from '@chakra-ui/react';
 import type { Variants } from 'motion/react';
-import { motion, useAnimation } from 'motion/react';
+import { motion } from 'motion/react';
 import { forwardRef } from 'react';
+
+import { useMouseMotion } from '../lib/utility-hooks';
 
 const pathVariants: Variants = {
   normal: {
@@ -19,15 +21,7 @@ const MotionIcon = motion.create(Icon);
 
 export const CloseButton = forwardRef<HTMLButtonElement, ButtonProps>(
   function CloseButton(props, ref) {
-    const controls = useAnimation();
-
-    const handleMouseEnter = () => {
-      controls.start('animate');
-    };
-
-    const handleMouseLeave = () => {
-      controls.start('normal');
-    };
+    const { controls, handleMouseEnter, handleMouseLeave } = useMouseMotion();
 
     return (
       <IconButton

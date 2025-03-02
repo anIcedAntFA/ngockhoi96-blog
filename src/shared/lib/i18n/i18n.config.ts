@@ -6,7 +6,7 @@ export const pathnames = {
   '/vi': '/vi',
   '/about': {
     en: '/about',
-    vi: '/ve-chung-toi',
+    vi: '/ve-toi',
   },
   '/articles': {
     en: '/articles',
