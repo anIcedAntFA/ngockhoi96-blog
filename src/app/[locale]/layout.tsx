@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getLocale, getTranslations, setRequestLocale } from 'next-intl/server';
@@ -115,6 +116,7 @@ async function LocaleLayout({ children }: PropsWithChildren) {
             <Footer />
           </ThemeProvider>
         </LocaleProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
