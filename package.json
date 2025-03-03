@@ -48,6 +48,7 @@
     "@emotion/react": "^11.14.0",
     "@hookform/resolvers": "^4.1.0",
     "@lucide/lab": "^0.1.2",
+    "@vercel/speed-insights": "^1.2.0",
     "lucide-react": "^0.474.0",
     "motion": "^12.4.7",
     "next": "15.1.6",
