@@ -64,7 +64,7 @@ const emailSchema = z.object({
     .email('Invalid email address'),
 });
 
-function SubscribeButton() {
+export function SubscribeButton() {
   const subscribeBox = useDialog({ closeOnInteractOutside: false });
 
   const {
@@ -282,4 +282,3 @@ function SubscribeButton() {
 }
 
 SubscribeButton.displayName = 'SubscribeButton';
-export default SubscribeButton;

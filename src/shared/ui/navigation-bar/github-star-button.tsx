@@ -15,7 +15,7 @@ interface GithubStarButtonProps {
   url?: string;
 }
 
-function GithubStarButton({
+export function GithubStarButton({
   count,
   url = PERSONAL_GITHUB_REPO_URL,
 }: GithubStarButtonProps) {
@@ -93,4 +93,3 @@ function GithubStarButton({
 }
 
 GithubStarButton.displayName = 'GithubStarButton';
-export default GithubStarButton;

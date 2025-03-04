@@ -33,7 +33,7 @@ type NavigationListKey = MessageKeys<
   'home' | 'about' | 'articles' | 'category' | 'resources'
 >;
 
-export const navigationList = (
+const navigationList = (
   t: (key: NavigationListKey) => string,
 ): {
   id: number;
@@ -337,7 +337,7 @@ function DropdownIcon({ active = false }: { active?: boolean }) {
   );
 }
 
-function NavigationList() {
+export function NavigationList() {
   const t = useTranslations('layout.header.navigation');
 
   return (
@@ -371,4 +371,3 @@ function NavigationList() {
 }
 
 NavigationList.displayName = 'NavigationList';
-export default NavigationList;

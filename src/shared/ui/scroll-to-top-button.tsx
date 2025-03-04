@@ -1,14 +1,13 @@
 'use client';
 
-import { Icon, Presence } from '@chakra-ui/react';
+import { Icon, IconButton } from '@chakra-ui/react';
 import type { ButtonProps as ChakraButtonProps } from '@chakra-ui/react/button';
 import { ArrowUpIcon } from 'lucide-react';
+import type { Variants } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useEffect } from 'react';
 
 import useBoolean from '../lib/utility-hooks/use-boolean';
-
-import { Button } from './button';
-import { Tooltip } from './tooltip';
 
 interface IScrollToTopButtonProps extends ChakraButtonProps {
   top?: number;
@@ -27,14 +26,21 @@ function scrollToTop(isSmooth: boolean) {
   });
 }
 
-const DEFAULT_OFFSET_TOP = 400;
+const DEFAULT_OFFSET_TOP = 200;
 
-function ScrollToTopButton({
+const MotionIconButton = motion.create(IconButton);
+
+const motionVariant: Variants = {
+  initial: { opacity: 0, scale: 0.5, visibility: 'hidden' },
+  animate: { opacity: 1, scale: 1, visibility: 'visible' },
+  exit: { opacity: 0, scale: 0.5 },
+};
+
+export function ScrollToTopButton({
   top = DEFAULT_OFFSET_TOP,
   isSmooth = true,
-  ...ckBtnProps
 }: IScrollToTopButtonProps) {
-  const showBtn = useBoolean();
+  const showBtn = useBoolean(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,58 +61,49 @@ function ScrollToTopButton({
   };
 
   return (
-    <Presence
-      animationDuration='slow'
-      animationStyle={{ _open: 'scale-fade-in', _closed: 'scale-fade-out' }}
-      lazyMount
-      present={showBtn.value}
-      unmountOnExit
-    >
-      <Tooltip
-        content='Scroll to top'
-        positioning={{ placement: 'left' }}
-        showArrow
-      >
-        <Button
+    <AnimatePresence>
+      {showBtn.value && (
+        <MotionIconButton
           aria-label='Scroll to top'
-          position='sticky'
-          left='100%'
-          bottom={8}
+          pos='sticky'
           zIndex={8}
-          mr={8}
+          bottom={8}
+          left='100%'
+          display='flex'
+          overflow='hidden'
           w={16}
           h={16}
+          mr={8}
           mb={8}
           bg='white'
           border='2px solid'
-          borderColor='green.500'
+          borderColor='primary'
           borderRadius='full'
-          boxShadow='4px 4px 8px 1px var(--shadow-color)'
-          shadowColor='green.500/20'
-          cursor='pointer'
-          overflow='hidden'
-          userSelect='none'
-          transition='background-color 0.3s ease-in-out'
-          display='flex'
+          shadow='4px 4px 8px 1px var(--shadow-color)'
           _hover={{
-            bg: 'green.500',
+            bg: 'primary',
             '& svg': {
-              color: 'gray.800/80',
+              color: 'white',
               animation: `goToTopIcon 0.8s cubic-bezier(0.57, 0.21, 0.69, 1.25)`,
             },
           }}
+          css={{ transition: 'background-color 0.3s ease-in-out' }}
+          userSelect='none'
+          cursor='pointer'
+          shadowColor='primary/20'
+          animate='animate'
+          exit='exit'
+          initial='initial'
+          variants={motionVariant}
           onClick={handleScrollToTop}
-          {...ckBtnProps}
         >
-          <Icon w={7} h={7} color='ngockhoi96'>
+          <Icon w={7} h={7} color='primary'>
             <ArrowUpIcon />
           </Icon>
-        </Button>
-      </Tooltip>
-    </Presence>
+        </MotionIconButton>
+      )}
+    </AnimatePresence>
   );
 }
 
 ScrollToTopButton.displayName = 'ScrollToTopButton';
-
-export default ScrollToTopButton;

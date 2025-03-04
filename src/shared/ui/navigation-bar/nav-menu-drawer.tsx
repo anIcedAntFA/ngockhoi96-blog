@@ -38,7 +38,7 @@ import { DrawerBody, DrawerContent, DrawerFooter, DrawerRoot } from '../drawer';
 
 import { useMenuDrawer, useMenuDrawerActions } from './navigation-bar.store';
 
-export const navigationList: {
+const navigationList: {
   id: number;
   type: 'link' | 'menu';
   title: string;
@@ -281,7 +281,7 @@ function NavLinkItem({ data }: NavMenuItemProps) {
   );
 }
 
-function NavMenuDrawer() {
+export function NavMenuDrawer() {
   const showMenuDrawer = useMenuDrawer();
 
   return (
@@ -345,4 +345,3 @@ function NavMenuDrawer() {
 }
 
 NavMenuDrawer.displayName = 'NavMenuDrawer';
-export default NavMenuDrawer;
