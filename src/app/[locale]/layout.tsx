@@ -15,7 +15,7 @@ import {
 import type { Todo } from '@/shared/lib/utility-types';
 import Footer from '@/shared/ui/footer';
 import NavigationBar from '@/shared/ui/navigation-bar';
-import ScrollToTopButton from '@/shared/ui/scroll-to-top-button';
+import { ScrollToTopButton } from '@/shared/ui/scroll-to-top-button';
 
 import LocaleProvider from '../_provider/locale-provider';
 import ThemeProvider from '../_provider/theme-provider';

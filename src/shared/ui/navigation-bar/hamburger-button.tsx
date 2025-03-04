@@ -38,7 +38,7 @@ const MOTION_VARIANTS = {
   },
 };
 
-function HamburgerButton() {
+export function HamburgerButton() {
   const showMenuDrawer = useMenuDrawer();
   const { setMenuDrawer } = useMenuDrawerActions();
 
@@ -122,4 +122,3 @@ function HamburgerButton() {
 }
 
 HamburgerButton.displayName = 'NavHamburgerButton';
-export default HamburgerButton;

@@ -9,7 +9,7 @@ import { Switch } from '../switch';
 
 const MotionIcon = motion.create(Icon);
 
-function SettingDropdownButton() {
+export function SettingDropdownButton() {
   const { controls, handleMouseEnter, handleMouseLeave } = useMouseMotion();
 
   return (
@@ -83,4 +83,3 @@ function SettingDropdownButton() {
 }
 
 SettingDropdownButton.displayName = 'SettingDropdownButton';
-export default SettingDropdownButton;

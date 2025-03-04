@@ -29,7 +29,7 @@ import { InputGroup } from '../input-group';
 
 const MotionIcon = motion.create(Icon);
 
-function SearchBoxButton() {
+export function SearchBoxButton() {
   const [searchText, setSearchText] = useState<string>('');
 
   const placeholderRef = useRef<HTMLParagraphElement>(null);
@@ -298,4 +298,3 @@ function SearchBoxButton() {
 }
 
 SearchBoxButton.displayName = 'SearchBoxButton';
-export default SearchBoxButton;
