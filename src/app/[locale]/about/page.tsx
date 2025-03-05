@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 
 import { Link } from '@/shared/lib/i18n';
+import { FileDownloadButton } from '@/shared/ui/file-download-button';
 
 interface ITodo {
   userId: number;
@@ -32,6 +33,14 @@ async function AboutPage() {
 
         <pre>{result.title}</pre>
       </div>
+
+      <FileDownloadButton
+        label='Download resume'
+        fileURL='https://example.com'
+        fileName='example'
+      >
+        Download Resume
+      </FileDownloadButton>
 
       <div>
         {cookieStore.getAll().map((cookie) => (
